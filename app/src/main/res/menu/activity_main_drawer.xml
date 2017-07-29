@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_beranda"
+            android:icon="@mipmap/ic_home_black_24dp"
+            android:title="Beranda" />
+        <item
+            android:id="@+id/nav_data_balita"
+            android:icon="@mipmap/ic_launcher"
+            android:title="Data Balita" />
+        <item
+            android:id="@+id/nav_tumbuh_kembang"
+            android:icon="@mipmap/ic_launcher"
+            android:title="Tumbuh Kembang Balita" />
+        <item
+            android:id="@+id/nav_imunisasi"
+            android:icon="@mipmap/ic_launcher"
+            android:title="Imunisasi" />
+    </group>
+
+    <group android:menuCategory="secondary">
+        <item
+            android:id="@+id/nav_info_app"
+            android:icon="@mipmap/ic_info_black_24dp"
+            android:title="Info App" />
+        <item
+            android:id="@+id/nav_contact"
+            android:icon="@mipmap/ic_contact_mail_black_24dp"
+            android:title="Contact Developer" />
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@mipmap/ic_exit_to_app_black_24dp"
+            android:title="Logout" />
+    </group>
+
+</menu>
