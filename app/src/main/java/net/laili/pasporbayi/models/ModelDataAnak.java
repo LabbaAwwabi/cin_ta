@@ -8,8 +8,9 @@ import net.laili.pasporbayi.database.DBHelper;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class DataAnak {
+public class ModelDataAnak {
 
+    private int index;
     private String nama;
     private String tanggalLahir;
     private String waktu;
@@ -35,39 +36,10 @@ public class DataAnak {
     private String kondisiAtauSaranKhusus;
     private String jenisKelaminAnak;
 
-    /**
-    * No args constructor for use in serialization
-    *
-    */
-    public DataAnak() {}
+    public ModelDataAnak() {}
 
-    /**
-    *
-    * @param berat
-    * @param alamatKantorIbu
-    * @param tempatLahir
-    * @param teleponSelulerIbu
-    * @param tempatTanggalLahirAyah
-    * @param tanggalLahir
-    * @param namaAyah
-    * @param kondisiAtauSaranKhusus
-    * @param namaIbu
-    * @param waktu
-    * @param namaDokterAnak
-    * @param teleponKantorAyah
-    * @param alamatKantorAyah
-    * @param pekerjaanAyah
-    * @param namaDokterKandungan
-    * @param teleponKantorIbu
-    * @param pekerjaanIbu
-    * @param tempatTanggalLahirIbu
-    * @param nama
-    * @param teleponSelulerAyah
-    * @param rumahSakit
-    * @param panjang
-    * @param lingkarKepala
-    */
-    public DataAnak(String nama, String tanggalLahir, String waktu, String berat, String panjang, String lingkarKepala, String tempatLahir, String rumahSakit, String namaAyah, String tempatTanggalLahirAyah, String pekerjaanAyah, String alamatKantorAyah, String teleponKantorAyah, String teleponSelulerAyah, String namaIbu, String tempatTanggalLahirIbu, String pekerjaanIbu, String alamatKantorIbu, String teleponKantorIbu, String teleponSelulerIbu, String namaDokterKandungan, String namaDokterAnak, String kondisiAtauSaranKhusus, String jenisKelaminAnak) {
+    public ModelDataAnak(int index, String nama, String tanggalLahir, String waktu, String berat, String panjang, String lingkarKepala, String tempatLahir, String rumahSakit, String namaAyah, String tempatTanggalLahirAyah, String pekerjaanAyah, String alamatKantorAyah, String teleponKantorAyah, String teleponSelulerAyah, String namaIbu, String tempatTanggalLahirIbu, String pekerjaanIbu, String alamatKantorIbu, String teleponKantorIbu, String teleponSelulerIbu, String namaDokterKandungan, String namaDokterAnak, String kondisiAtauSaranKhusus, String jenisKelaminAnak) {
+        this.index = index;
         this.nama = nama;
         this.tanggalLahir = tanggalLahir;
         this.waktu = waktu;
@@ -94,7 +66,8 @@ public class DataAnak {
         this.jenisKelaminAnak = jenisKelaminAnak;
     }
 
-    public DataAnak(Cursor cursor){
+    public ModelDataAnak(Cursor cursor){
+        this.index = cursor.getInt(cursor.getColumnIndex(DBHelper.COLUMN_INDEX));
         this.nama = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_DATA_ANAK_NAMA));
         this.tanggalLahir = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_DATA_ANAK_TANGGAL_LAHIR));
         this.waktu = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_DATA_ANAK_WAKTU));
@@ -121,7 +94,7 @@ public class DataAnak {
         this.jenisKelaminAnak = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_DATA_ANAK_JENIS_KELAMIN_ANAK));
     }
 
-    public DataAnak(JSONObject object) throws JSONException {
+    public ModelDataAnak(JSONObject object) throws JSONException {
         this.nama = object.getString(DBHelper.COLUMN_DATA_ANAK_NAMA);
         this.tanggalLahir = object.getString(DBHelper.COLUMN_DATA_ANAK_TANGGAL_LAHIR);
         this.waktu = object.getString(DBHelper.COLUMN_DATA_ANAK_WAKTU);
@@ -146,6 +119,14 @@ public class DataAnak {
         this.namaDokterAnak = object.getString(DBHelper.COLUMN_DATA_ANAK_NAMA_DOKTER_ANAK);
         this.kondisiAtauSaranKhusus = object.getString(DBHelper.COLUMN_DATA_ANAK_KONDISI_ATAU_SARAN);
         this.jenisKelaminAnak = object.getString(DBHelper.COLUMN_DATA_ANAK_JENIS_KELAMIN_ANAK);
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
     }
 
     public String getNama() {

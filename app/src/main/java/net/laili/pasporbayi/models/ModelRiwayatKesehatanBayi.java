@@ -8,16 +8,16 @@ import net.laili.pasporbayi.database.DBHelper;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class RiwayatKesehatanBayi {
+public class ModelRiwayatKesehatanBayi {
     private String kesehatanBayiSaatLahir;
     private String kesehatanBayiSelamaDiRuangBayi;
     private String imunisasiYangTelahDiberikan;
     private String pengobatanYangTelahDiberikan;
     private String pemeriksaanLain;
 
-    public RiwayatKesehatanBayi(){}
+    public ModelRiwayatKesehatanBayi(){}
 
-    public RiwayatKesehatanBayi(String kesehatanBayiSaatLahir, String kesehatanBayiSelamaDiRuangBayi, String imunisasiYangTelahDiberikan, String pengobatanYangTelahDiberikan, String pemeriksaanLain) {
+    public ModelRiwayatKesehatanBayi(String kesehatanBayiSaatLahir, String kesehatanBayiSelamaDiRuangBayi, String imunisasiYangTelahDiberikan, String pengobatanYangTelahDiberikan, String pemeriksaanLain) {
         this.kesehatanBayiSaatLahir = kesehatanBayiSaatLahir;
         this.kesehatanBayiSelamaDiRuangBayi = kesehatanBayiSelamaDiRuangBayi;
         this.imunisasiYangTelahDiberikan = imunisasiYangTelahDiberikan;
@@ -25,7 +25,7 @@ public class RiwayatKesehatanBayi {
         this.pemeriksaanLain = pemeriksaanLain;
     }
 
-    public RiwayatKesehatanBayi(Cursor cursor){
+    public ModelRiwayatKesehatanBayi(Cursor cursor){
         this.kesehatanBayiSaatLahir = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_RIWAYAT_KESEHATAN_BAYI_KESEHATAN_BAYI_SAAT_LAHIR));
         this.kesehatanBayiSelamaDiRuangBayi = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_RIWAYAT_KESEHATAN_BAYI_KESEHATAN_BAYI_SELAMA_DI_RUANG_BAYI));
         this.imunisasiYangTelahDiberikan = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_RIWAYAT_KESEHATAN_BAYI_IMUNISASI_YANG_TELAH_DIBERIKAN));
@@ -33,7 +33,7 @@ public class RiwayatKesehatanBayi {
         this.pemeriksaanLain = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_RIWAYAT_KESEHATAN_BAYI_PEMERIKSAAN_LAIN));
     }
 
-    public RiwayatKesehatanBayi(JSONObject object) throws JSONException {
+    public ModelRiwayatKesehatanBayi(JSONObject object) throws JSONException {
         this.kesehatanBayiSaatLahir = object.getString(DBHelper.COLUMN_RIWAYAT_KESEHATAN_BAYI_KESEHATAN_BAYI_SAAT_LAHIR);
         this.kesehatanBayiSelamaDiRuangBayi = object.getString(DBHelper.COLUMN_RIWAYAT_KESEHATAN_BAYI_KESEHATAN_BAYI_SELAMA_DI_RUANG_BAYI);
         this.imunisasiYangTelahDiberikan = object.getString(DBHelper.COLUMN_RIWAYAT_KESEHATAN_BAYI_IMUNISASI_YANG_TELAH_DIBERIKAN);

@@ -8,7 +8,7 @@ import net.laili.pasporbayi.database.DBHelper;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class RiwayatKelahiran {
+public class ModelRiwayatKelahiran {
 
     private String tanggalLahir;
     private String namaRumahSakit;
@@ -26,9 +26,9 @@ public class RiwayatKelahiran {
     private String beratPlacenta;
     private String golonganDarah;
 
-    public RiwayatKelahiran() {}
+    public ModelRiwayatKelahiran() {}
 
-    public RiwayatKelahiran(String tanggalLahir, String namaRumahSakit, String penolongPersalinan, String umurKelahiran, String letakJanin, String caraLahir, String apgarScope, String beratBadanLahir, String panjangBadanLahir, String lingkarKepala, String lingkarDada, String taliPusat, String airKetuban, String beratPlacenta, String golonganDarah) {
+    public ModelRiwayatKelahiran(String tanggalLahir, String namaRumahSakit, String penolongPersalinan, String umurKelahiran, String letakJanin, String caraLahir, String apgarScope, String beratBadanLahir, String panjangBadanLahir, String lingkarKepala, String lingkarDada, String taliPusat, String airKetuban, String beratPlacenta, String golonganDarah) {
         this.tanggalLahir = tanggalLahir;
         this.namaRumahSakit = namaRumahSakit;
         this.penolongPersalinan = penolongPersalinan;
@@ -46,7 +46,7 @@ public class RiwayatKelahiran {
         this.golonganDarah = golonganDarah;
     }
 
-    public RiwayatKelahiran(Cursor cursor){
+    public ModelRiwayatKelahiran(Cursor cursor){
         this.tanggalLahir = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_RIWAYAT_KELAHIRAN_TANGGAL_LAHIR));
         this.namaRumahSakit = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_RIWAYAT_KELAHIRAN_NAMA_RUMAH_SAKIT));
         this.penolongPersalinan = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_RIWAYAT_KELAHIRAN_PENOLONG_PERSALINAN));
@@ -64,7 +64,7 @@ public class RiwayatKelahiran {
         this.golonganDarah = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_RIWAYAT_KELAHIRAN_GOLONGAN_DARAH));
     }
 
-    public RiwayatKelahiran(JSONObject object) throws JSONException {
+    public ModelRiwayatKelahiran(JSONObject object) throws JSONException {
         this.tanggalLahir = object.getString(DBHelper.COLUMN_RIWAYAT_KELAHIRAN_TANGGAL_LAHIR);
         this.namaRumahSakit = object.getString(DBHelper.COLUMN_RIWAYAT_KELAHIRAN_NAMA_RUMAH_SAKIT);
         this.penolongPersalinan = object.getString(DBHelper.COLUMN_RIWAYAT_KELAHIRAN_PENOLONG_PERSALINAN);

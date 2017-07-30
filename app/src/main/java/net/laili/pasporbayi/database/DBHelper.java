@@ -12,6 +12,14 @@ import net.laili.pasporbayi.BuildConfig;
 
 public class DBHelper extends SQLiteOpenHelper {
 
+    private static DBHelper instance;
+
+    public static synchronized DBHelper getInstance(Context context){
+        if(instance == null) instance = new DBHelper(context);
+
+        return instance;
+    }
+
     private static int DB_VERSION = 1;
 
     public static final String COLUMN_INDEX = "index";
