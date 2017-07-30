@@ -48,14 +48,14 @@ public class DaoCatatanImunisasi {
         return models;
     }
 
-    public void insert(ModelCatatanImunisasi model){
+    public boolean insert(ModelCatatanImunisasi model){
         ContentValues cv = new ContentValues();
         cv.put(DBHelper.COLUMN_INDEX, model.getIndex());
         cv.put(DBHelper.COLUMN_CATATAN_IMUNISASI_IMUNISASI, model.getImunisasi());
         cv.put(DBHelper.COLUMN_CATATAN_IMUNISASI_UMUR, model.getUmur());
         cv.put(DBHelper.COLUMN_CATATAN_IMUNISASI_TANGGAL, "");
 
-        db.insert(tableName, null, cv);
+        return db.insert(tableName, "''", cv) != -1;
     }
 
     public void update(ModelCatatanImunisasi model){

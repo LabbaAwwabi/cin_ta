@@ -48,7 +48,7 @@ public class DaoRiwayatKelahiran {
         return models;
     }
 
-    public void insert(ModelRiwayatKelahiran model){
+    public boolean insert(ModelRiwayatKelahiran model){
         ContentValues cv = new ContentValues();
         cv.put(DBHelper.COLUMN_RIWAYAT_KELAHIRAN_TANGGAL_LAHIR, model.getTanggalLahir());
         cv.put(DBHelper.COLUMN_RIWAYAT_KELAHIRAN_NAMA_RUMAH_SAKIT, model.getNamaRumahSakit());
@@ -66,7 +66,7 @@ public class DaoRiwayatKelahiran {
         cv.put(DBHelper.COLUMN_RIWAYAT_KELAHIRAN_BERAT_PLACENTA, model.getBeratPlacenta());
         cv.put(DBHelper.COLUMN_RIWAYAT_KELAHIRAN_GOLONGAN_DARAH, model.getGolonganDarah());
 
-        db.insert(tableName, null, cv);
+        return db.insert(tableName, null, cv) != -1;
     }
 
     public void update(ModelRiwayatKelahiran model){

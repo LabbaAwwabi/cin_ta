@@ -320,4 +320,35 @@ public class ModelDataAnak {
     public void setJenisKelaminAnak(String jenisKelaminAnak) {
         this.jenisKelaminAnak = jenisKelaminAnak;
     }
+
+    @Override
+    public String toString() {
+        return "ModelDataAnak{" +
+                "index=" + index +
+                ", nama='" + nama + '\'' +
+                ", tanggalLahir='" + tanggalLahir + '\'' +
+                ", waktu='" + waktu + '\'' +
+                ", berat='" + berat + '\'' +
+                ", panjang='" + panjang + '\'' +
+                ", lingkarKepala='" + lingkarKepala + '\'' +
+                ", tempatLahir='" + tempatLahir + '\'' +
+                ", rumahSakit='" + rumahSakit + '\'' +
+                ", namaAyah='" + namaAyah + '\'' +
+                ", tempatTanggalLahirAyah='" + tempatTanggalLahirAyah + '\'' +
+                ", pekerjaanAyah='" + pekerjaanAyah + '\'' +
+                ", alamatKantorAyah='" + alamatKantorAyah + '\'' +
+                ", teleponKantorAyah='" + teleponKantorAyah + '\'' +
+                ", teleponSelulerAyah='" + teleponSelulerAyah + '\'' +
+                ", namaIbu='" + namaIbu + '\'' +
+                ", tempatTanggalLahirIbu='" + tempatTanggalLahirIbu + '\'' +
+                ", pekerjaanIbu='" + pekerjaanIbu + '\'' +
+                ", alamatKantorIbu='" + alamatKantorIbu + '\'' +
+                ", teleponKantorIbu='" + teleponKantorIbu + '\'' +
+                ", teleponSelulerIbu='" + teleponSelulerIbu + '\'' +
+                ", namaDokterKandungan='" + namaDokterKandungan + '\'' +
+                ", namaDokterAnak='" + namaDokterAnak + '\'' +
+                ", kondisiAtauSaranKhusus='" + kondisiAtauSaranKhusus + '\'' +
+                ", jenisKelaminAnak='" + jenisKelaminAnak + '\'' +
+                '}';
+    }
 }

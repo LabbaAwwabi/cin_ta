@@ -84,4 +84,15 @@ public class ModelPerkembanganBayi {
     public void setStatus(int status) {
         this.status = status;
     }
+
+    @Override
+    public String toString() {
+        return "ModelPerkembanganBayi{" +
+                "index=" + index +
+                ", umur='" + umur + '\'' +
+                ", tipe='" + tipe + '\'' +
+                ", detail='" + detail + '\'' +
+                ", status=" + status +
+                '}';
+    }
 }

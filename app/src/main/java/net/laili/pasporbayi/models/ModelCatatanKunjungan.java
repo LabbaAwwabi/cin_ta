@@ -119,4 +119,18 @@ public class ModelCatatanKunjungan {
     public void setPengobatan(String pengobatan) {
         this.pengobatan = pengobatan;
     }
+
+    @Override
+    public String toString() {
+        return "ModelCatatanKunjungan{" +
+                "index=" + index +
+                ", tanggal='" + tanggal + '\'' +
+                ", umur='" + umur + '\'' +
+                ", bb='" + bb + '\'' +
+                ", pb='" + pb + '\'' +
+                ", lk='" + lk + '\'' +
+                ", pemeriksaan='" + pemeriksaan + '\'' +
+                ", pengobatan='" + pengobatan + '\'' +
+                '}';
+    }
 }

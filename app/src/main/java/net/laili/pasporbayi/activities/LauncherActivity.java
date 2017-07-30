@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
@@ -13,6 +14,7 @@ import com.android.volley.VolleyError;
 
 import net.laili.pasporbayi.R;
 import net.laili.pasporbayi.auth.LoginActivity;
+import net.laili.pasporbayi.database.DBHelper;
 import net.laili.pasporbayi.database.DaoCatatanImunisasi;
 import net.laili.pasporbayi.database.DaoPerkembanganBayi;
 import net.laili.pasporbayi.models.ModelCatatanImunisasi;
@@ -38,6 +40,7 @@ public class LauncherActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+        DBHelper.getInstance(getApplicationContext());
         setContentView(R.layout.activity_launcher);
 
         daoPerkembanganBayi = DaoPerkembanganBayi.getInstance(getApplicationContext());
@@ -46,6 +49,7 @@ public class LauncherActivity extends AppCompatActivity {
         if (daoPerkembanganBayi.find().isEmpty() && daoCatatanImunisasi.find().isEmpty()) {
             inisialisasi();
         } else {
+            //inisialisasi();
             delay(2000);
         }
     }
@@ -68,13 +72,18 @@ public class LauncherActivity extends AppCompatActivity {
 
                         for (int i = 0; i < dataCatatanImunisasi.length(); i++) {
                             JSONObject catatanImunisasi = dataCatatanImunisasi.getJSONObject(i);
-                            daoCatatanImunisasi.insert(new ModelCatatanImunisasi(catatanImunisasi));
+                            boolean sql = daoCatatanImunisasi.insert(new ModelCatatanImunisasi(catatanImunisasi));
+                            //Log.i("trace", catatanImunisasi.toString());
+                            Log.i("trace", "imun " + i + (sql?"sukses":"gagal"));
                         }
+                        Log.i("trace", "imunisasi : " + daoCatatanImunisasi.find().size());
 
                         for (int i = 0; i < dataPerkembanganBayi.length(); i++) {
                             JSONObject perkembanganBayi = dataPerkembanganBayi.getJSONObject(i);
                             daoPerkembanganBayi.insert(new ModelPerkembanganBayi(perkembanganBayi));
+                            //Log.i("trace", perkembanganBayi.toString());
                         }
+                        Log.i("trace", "perkembangan : " + daoPerkembanganBayi.find().size());
 
                         delay(1000);
                     } else {

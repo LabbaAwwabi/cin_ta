@@ -47,7 +47,7 @@ public class DaoDataAnak {
         return models;
     }
 
-    public void insert(ModelDataAnak model){
+    public boolean insert(ModelDataAnak model){
         ContentValues cv = new ContentValues();
         cv.put(DBHelper.COLUMN_DATA_ANAK_NAMA, model.getNama());
         cv.put(DBHelper.COLUMN_DATA_ANAK_TANGGAL_LAHIR, model.getTanggalLahir());
@@ -74,7 +74,7 @@ public class DaoDataAnak {
         cv.put(DBHelper.COLUMN_DATA_ANAK_KONDISI_ATAU_SARAN, model.getKondisiAtauSaranKhusus());
         cv.put(DBHelper.COLUMN_DATA_ANAK_JENIS_KELAMIN_ANAK, model.getJenisKelaminAnak());
 
-        db.insert(tableName, null, cv);
+        return db.insert(tableName, null, cv) != -1;
     }
 
     public void update(ModelDataAnak model){

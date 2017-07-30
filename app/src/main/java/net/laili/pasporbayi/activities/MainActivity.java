@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -18,6 +19,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import net.laili.pasporbayi.R;
+import net.laili.pasporbayi.auth.LoginActivity;
+import net.laili.pasporbayi.database.DaoCatatanImunisasi;
+import net.laili.pasporbayi.database.DaoCatatanKunjungan;
+import net.laili.pasporbayi.database.DaoDataAnak;
+import net.laili.pasporbayi.database.DaoPerkembanganBayi;
+import net.laili.pasporbayi.database.DaoRiwayatKelahiran;
+import net.laili.pasporbayi.database.DaoRiwayatKesehatanBayi;
 import net.laili.pasporbayi.utils.AppSessionManager;
 
 public class MainActivity extends AppCompatActivity
@@ -48,6 +56,10 @@ public class MainActivity extends AppCompatActivity
         View headerLayout = navigationView.getHeaderView(0);
         TextView emailUser = (TextView) headerLayout.findViewById(R.id.text_email_user);
         emailUser.setText(appSessionManager.getEmailUser());
+
+        Log.i("CheckDao", "perkembangan bayi : " + DaoPerkembanganBayi.getInstance(this).find().size());
+//        Log.i("CheckDao", DaoCatatanImunisasi.getInstance(this).find().toString());
+//        Log.i("CheckDao", DaoCatatanKunjungan.getInstance(this).find().toString());
     }
 
     @Override
@@ -94,7 +106,9 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_contact) {
 
         } else if (id == R.id.nav_logout) {
-
+            logout();
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
         } else {
             return false;
         }
@@ -102,5 +116,17 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void logout() {
+        appSessionManager.clearSession();
+        appSessionManager.setLoginState(false);
+
+        DaoCatatanImunisasi.getInstance(this).reset();
+        DaoPerkembanganBayi.getInstance(this).reset();
+        DaoCatatanKunjungan.getInstance(this).remove();
+        DaoDataAnak.getInstance(this).remove();
+        DaoRiwayatKelahiran.getInstance(this).remove();
+        DaoRiwayatKesehatanBayi.getInstance(this).remove();
     }
 }

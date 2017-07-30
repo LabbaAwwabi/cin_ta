@@ -22,11 +22,25 @@ import com.mobsandgeeks.saripaar.annotation.Password;
 
 import net.laili.pasporbayi.activities.MainActivity;
 import net.laili.pasporbayi.R;
+import net.laili.pasporbayi.database.DBHelper;
+import net.laili.pasporbayi.database.DaoCatatanImunisasi;
+import net.laili.pasporbayi.database.DaoCatatanKunjungan;
+import net.laili.pasporbayi.database.DaoDataAnak;
+import net.laili.pasporbayi.database.DaoPerkembanganBayi;
+import net.laili.pasporbayi.database.DaoRiwayatKelahiran;
+import net.laili.pasporbayi.database.DaoRiwayatKesehatanBayi;
+import net.laili.pasporbayi.models.ModelCatatanImunisasi;
+import net.laili.pasporbayi.models.ModelCatatanKunjungan;
+import net.laili.pasporbayi.models.ModelDataAnak;
+import net.laili.pasporbayi.models.ModelPerkembanganBayi;
+import net.laili.pasporbayi.models.ModelRiwayatKelahiran;
+import net.laili.pasporbayi.models.ModelRiwayatKesehatanBayi;
 import net.laili.pasporbayi.utils.AppController;
 import net.laili.pasporbayi.utils.AppSessionManager;
 import net.laili.pasporbayi.utils.Constants;
 import net.laili.pasporbayi.utils.CustomRequest;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -35,21 +49,24 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener, Validator.ValidationListener{
 
     @NotEmpty
     @Email
+    @BindView(R.id.input_email)
     EditText inputEmail;
 
     @NotEmpty
     @Password
+    @BindView(R.id.input_password)
     EditText inputPassword;
 
     @BindView(R.id.btn_login)
     Button buttonLogin;
-    @BindView(R.id.link_signup)
-    TextView linkSignUp;
+    @BindView(R.id.link_daftar)
+    TextView linkDaftar;
 
     private AppSessionManager appSessionManager;
     private Validator validator;
@@ -59,19 +76,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        //ButterKnife.bind(this);
+        ButterKnife.bind(this);
 
         appSessionManager = new AppSessionManager(this);
 
         validator = new Validator(this);
         validator.setValidationListener(this);
 
-        inputEmail = (EditText) findViewById(R.id.input_email);
-        inputPassword = (EditText) findViewById(R.id.input_password);
-        buttonLogin = (Button) findViewById(R.id.btn_login);
-        linkSignUp = (TextView) findViewById(R.id.link_signup);
         buttonLogin.setOnClickListener(this);
-        linkSignUp.setOnClickListener(this);
+        linkDaftar.setOnClickListener(this);
 
         progressDialog = new ProgressDialog(this,
                 R.style.AppTheme_Dialog);
@@ -86,8 +99,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.btn_login:
                 validator.validate();
                 break;
-            case R.id.link_signup:
-                //startActivity(new Intent(this, RegisterActivity.class));
+            case R.id.link_daftar:
+                startActivity(new Intent(this, RegistrationActivity.class));
                 finish();
                 break;
         }
@@ -99,7 +112,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         params.put(AppSessionManager.KEY_EMAIL, inputEmail.getText().toString());
         params.put(AppSessionManager.KEY_PASSWORD, inputPassword.getText().toString());
 
-        Log.i("trace", params.toString());
         login(params);
     }
 
@@ -133,8 +145,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         JSONObject data = response.getJSONObject(Constants.JSON_DATA);
 
                         if (data != null) {
+                            appSessionManager.setLoginState(true);
                             appSessionManager.setEmailUser(params.get(AppSessionManager.KEY_EMAIL));
+                            appSessionManager.setNamaUser(data.getString(AppSessionManager.KEY_NAMA));
                             Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
+                            createDaoSession(data);
                             progressDialog.dismiss();
                             startActivity(new Intent(LoginActivity.this, MainActivity.class));
                             finish();
@@ -159,5 +174,63 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         // Adding request to request queue
         AppController.getInstance().addToRequestQueue(jsonObjReq);
+    }
+
+    private void createDaoSession(JSONObject data) {
+        DaoDataAnak daoDataAnak = DaoDataAnak.getInstance(getApplicationContext());
+        DaoRiwayatKelahiran daoRiwayatKelahiran = DaoRiwayatKelahiran.getInstance(getApplicationContext());
+        DaoRiwayatKesehatanBayi daoRiwayatKesehatanBayi = DaoRiwayatKesehatanBayi.getInstance(getApplicationContext());
+        DaoPerkembanganBayi daoPerkembanganBayi = DaoPerkembanganBayi.getInstance(getApplicationContext());
+        DaoCatatanImunisasi daoCatatanImunisasi = DaoCatatanImunisasi.getInstance(getApplicationContext());
+        DaoCatatanKunjungan daoCatatanKunjungan = DaoCatatanKunjungan.getInstance(getApplicationContext());
+
+        try {
+            if (data.getJSONArray(DBHelper.TABLE_DATA_ANAK) != null) {
+                JSONArray dataAnak = data.getJSONArray(DBHelper.TABLE_DATA_ANAK);
+                for (int i = 0; i < dataAnak.length(); i++) {
+                    daoDataAnak.insert(new ModelDataAnak(dataAnak.getJSONObject(i)));
+                }
+            }
+            if (data.getJSONArray(DBHelper.TABLE_RIWAYAT_KELAHIRAN) != null) {
+                JSONArray riwayatKelahiran = data.getJSONArray(DBHelper.TABLE_RIWAYAT_KELAHIRAN);
+                for (int i = 0; i < riwayatKelahiran.length(); i++) {
+                    daoRiwayatKelahiran.insert(new ModelRiwayatKelahiran(riwayatKelahiran.getJSONObject(i)));
+                }
+            }
+            if (data.getJSONArray(DBHelper.TABLE_RIWAYAT_KESEHATAN_BAYI) != null) {
+                JSONArray riwayatKesehatan = data.getJSONArray(DBHelper.TABLE_RIWAYAT_KESEHATAN_BAYI);
+                for (int i = 0; i < riwayatKesehatan.length(); i++) {
+                    daoRiwayatKesehatanBayi.insert(new ModelRiwayatKesehatanBayi(riwayatKesehatan.getJSONObject(i)));
+                }
+            }
+            if (data.getJSONArray(DBHelper.TABLE_PERKEMBANGAN_BAYI) != null) {
+                JSONArray perkembanganBayi = data.getJSONArray(DBHelper.TABLE_PERKEMBANGAN_BAYI);
+                for (int i = 0; i < perkembanganBayi.length(); i++) {
+                    daoPerkembanganBayi.update(new ModelPerkembanganBayi(perkembanganBayi.getJSONObject(i)));
+                }
+            }
+            if (data.getJSONArray(DBHelper.TABLE_CATATAN_IMUNISASI) != null) {
+                JSONArray catatanImunisasi = data.getJSONArray(DBHelper.TABLE_CATATAN_IMUNISASI);
+                for (int i = 0; i < catatanImunisasi.length(); i++) {
+                    daoCatatanImunisasi.update(new ModelCatatanImunisasi(catatanImunisasi.getJSONObject(i)));
+                }
+            }
+            if (data.getJSONArray(DBHelper.TABLE_CATATAN_KUNJUNGAN) != null) {
+                JSONArray catatanKunjungan = data.getJSONArray(DBHelper.TABLE_CATATAN_KUNJUNGAN);
+                for (int i = 0; i < catatanKunjungan.length(); i++) {
+                    daoCatatanKunjungan.insert(new ModelCatatanKunjungan(catatanKunjungan.getJSONObject(i)));
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 }

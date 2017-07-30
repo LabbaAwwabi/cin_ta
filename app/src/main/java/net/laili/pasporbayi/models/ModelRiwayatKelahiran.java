@@ -212,4 +212,26 @@ public class ModelRiwayatKelahiran {
     public void setGolonganDarah(String golonganDarah) {
         this.golonganDarah = golonganDarah;
     }
+
+    @Override
+    public String toString() {
+        return "ModelRiwayatKelahiran{" +
+                "index=" + index +
+                ", tanggalLahir='" + tanggalLahir + '\'' +
+                ", namaRumahSakit='" + namaRumahSakit + '\'' +
+                ", penolongPersalinan='" + penolongPersalinan + '\'' +
+                ", umurKelahiran='" + umurKelahiran + '\'' +
+                ", letakJanin='" + letakJanin + '\'' +
+                ", caraLahir='" + caraLahir + '\'' +
+                ", apgarScope='" + apgarScope + '\'' +
+                ", beratBadanLahir='" + beratBadanLahir + '\'' +
+                ", panjangBadanLahir='" + panjangBadanLahir + '\'' +
+                ", lingkarKepala='" + lingkarKepala + '\'' +
+                ", lingkarDada='" + lingkarDada + '\'' +
+                ", taliPusat='" + taliPusat + '\'' +
+                ", airKetuban='" + airKetuban + '\'' +
+                ", beratPlacenta='" + beratPlacenta + '\'' +
+                ", golonganDarah='" + golonganDarah + '\'' +
+                '}';
+    }
 }

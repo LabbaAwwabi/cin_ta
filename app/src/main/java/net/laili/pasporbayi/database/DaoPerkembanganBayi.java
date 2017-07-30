@@ -48,7 +48,7 @@ public class DaoPerkembanganBayi {
         return models;
     }
 
-    public void insert(ModelPerkembanganBayi model){
+    public boolean insert(ModelPerkembanganBayi model){
         ContentValues cv = new ContentValues();
         cv.put(DBHelper.COLUMN_INDEX, model.getIndex());
         cv.put(DBHelper.COLUMN_PERKEMBANGAN_BAYI_UMUR, model.getUmur());
@@ -56,7 +56,7 @@ public class DaoPerkembanganBayi {
         cv.put(DBHelper.COLUMN_PERKEMBANGAN_BAYI_DETAIL, model.getDetail());
         cv.put(DBHelper.COLUMN_PERKEMBANGAN_BAYI_STATUS, 0);
 
-        db.insert(tableName, null, cv);
+        return db.insert(tableName, null, cv) != -1;
     }
 
     public void update(ModelPerkembanganBayi model){

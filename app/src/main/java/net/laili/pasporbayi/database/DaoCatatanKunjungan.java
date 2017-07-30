@@ -48,7 +48,7 @@ public class DaoCatatanKunjungan {
         return models;
     }
 
-    public void insert(ModelCatatanKunjungan model){
+    public boolean insert(ModelCatatanKunjungan model){
         ContentValues cv = new ContentValues();
         cv.put(DBHelper.COLUMN_INDEX, model.getIndex());
         cv.put(DBHelper.COLUMN_CATATAN_KUNJUNGAN_TANGGAL, model.getTanggal());
@@ -59,7 +59,7 @@ public class DaoCatatanKunjungan {
         cv.put(DBHelper.COLUMN_CATATAN_KUNJUNGAN_PEMERIKSAAN, model.getPemeriksaan());
         cv.put(DBHelper.COLUMN_CATATAN_KUNJUNGAN_PENGOBATAN, model.getPengobatan());
 
-        db.insert(tableName, null, cv);
+        return db.insert(tableName, null, cv) != -1;
     }
 
     public void update(ModelCatatanKunjungan model){

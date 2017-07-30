@@ -72,4 +72,14 @@ public class ModelCatatanImunisasi {
     public void setTanggal(String tanggal) {
         this.tanggal = tanggal;
     }
+
+    @Override
+    public String toString() {
+        return "ModelCatatanImunisasi{" +
+                "index=" + index +
+                ", imunisasi='" + imunisasi + '\'' +
+                ", umur='" + umur + '\'' +
+                ", tanggal='" + tanggal + '\'' +
+                '}';
+    }
 }

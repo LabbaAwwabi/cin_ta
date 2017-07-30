@@ -48,7 +48,7 @@ public class DaoRiwayatKesehatanBayi {
         return models;
     }
 
-    public void insert(ModelRiwayatKesehatanBayi model){
+    public boolean insert(ModelRiwayatKesehatanBayi model){
         ContentValues cv = new ContentValues();
         cv.put(DBHelper.COLUMN_RIWAYAT_KESEHATAN_BAYI_KESEHATAN_BAYI_SAAT_LAHIR, model.getKesehatanBayiSaatLahir());
         cv.put(DBHelper.COLUMN_RIWAYAT_KESEHATAN_BAYI_KESEHATAN_BAYI_SELAMA_DI_RUANG_BAYI, model.getKesehatanBayiSelamaDiRuangBayi());
@@ -56,7 +56,7 @@ public class DaoRiwayatKesehatanBayi {
         cv.put(DBHelper.COLUMN_RIWAYAT_KESEHATAN_BAYI_PENGOBATAN_YANG_TELAH_DIBERIKAN, model.getPengobatanYangTelahDiberikan());
         cv.put(DBHelper.COLUMN_RIWAYAT_KESEHATAN_BAYI_PEMERIKSAAN_LAIN, model.getPemeriksaanLain());
 
-        db.insert(tableName, null, cv);
+        return db.insert(tableName, null, cv) != -1;
     }
 
     public void update(ModelRiwayatKesehatanBayi model){

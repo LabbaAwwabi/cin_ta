@@ -91,4 +91,16 @@ public class ModelRiwayatKesehatanBayi {
     public void setPemeriksaanLain(String pemeriksaanLain) {
         this.pemeriksaanLain = pemeriksaanLain;
     }
+
+    @Override
+    public String toString() {
+        return "ModelRiwayatKesehatanBayi{" +
+                "index=" + index +
+                ", kesehatanBayiSaatLahir='" + kesehatanBayiSaatLahir + '\'' +
+                ", kesehatanBayiSelamaDiRuangBayi='" + kesehatanBayiSelamaDiRuangBayi + '\'' +
+                ", imunisasiYangTelahDiberikan='" + imunisasiYangTelahDiberikan + '\'' +
+                ", pengobatanYangTelahDiberikan='" + pengobatanYangTelahDiberikan + '\'' +
+                ", pemeriksaanLain='" + pemeriksaanLain + '\'' +
+                '}';
+    }
 }
