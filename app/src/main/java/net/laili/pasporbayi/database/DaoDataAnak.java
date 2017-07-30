@@ -47,6 +47,11 @@ public class DaoDataAnak {
         return models;
     }
 
+    /**
+     *
+     * @param model
+     * @return true if insert successfully
+     */
     public boolean insert(ModelDataAnak model){
         ContentValues cv = new ContentValues();
         cv.put(DBHelper.COLUMN_DATA_ANAK_NAMA, model.getNama());

@@ -48,6 +48,11 @@ public class DaoCatatanKunjungan {
         return models;
     }
 
+    /**
+     *
+     * @param model
+     * @return true if insert successfully
+     */
     public boolean insert(ModelCatatanKunjungan model){
         ContentValues cv = new ContentValues();
         cv.put(DBHelper.COLUMN_INDEX, model.getIndex());

@@ -48,6 +48,11 @@ public class DaoRiwayatKelahiran {
         return models;
     }
 
+    /**
+     *
+     * @param model
+     * @return true if insert successfully
+     */
     public boolean insert(ModelRiwayatKelahiran model){
         ContentValues cv = new ContentValues();
         cv.put(DBHelper.COLUMN_RIWAYAT_KELAHIRAN_TANGGAL_LAHIR, model.getTanggalLahir());

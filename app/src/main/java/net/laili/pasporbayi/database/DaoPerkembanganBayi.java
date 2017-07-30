@@ -48,6 +48,11 @@ public class DaoPerkembanganBayi {
         return models;
     }
 
+    /**
+     *
+     * @param model
+     * @return true if insert successfully
+     */
     public boolean insert(ModelPerkembanganBayi model){
         ContentValues cv = new ContentValues();
         cv.put(DBHelper.COLUMN_INDEX, model.getIndex());

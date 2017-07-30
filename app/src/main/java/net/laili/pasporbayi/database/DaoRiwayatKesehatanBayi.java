@@ -48,6 +48,11 @@ public class DaoRiwayatKesehatanBayi {
         return models;
     }
 
+    /**
+     *
+     * @param model
+     * @return true if insert successfully
+     */
     public boolean insert(ModelRiwayatKesehatanBayi model){
         ContentValues cv = new ContentValues();
         cv.put(DBHelper.COLUMN_RIWAYAT_KESEHATAN_BAYI_KESEHATAN_BAYI_SAAT_LAHIR, model.getKesehatanBayiSaatLahir());
