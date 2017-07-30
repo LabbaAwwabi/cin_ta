@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import net.laili.pasporbayi.models.ModelDataAnak;
 import net.laili.pasporbayi.models.ModelRiwayatKesehatanBayi;
 
 import java.util.ArrayList;
@@ -72,7 +71,7 @@ public class DaoRiwayatKesehatanBayi {
         cv.put(DBHelper.COLUMN_RIWAYAT_KESEHATAN_BAYI_PENGOBATAN_YANG_TELAH_DIBERIKAN, model.getPengobatanYangTelahDiberikan());
         cv.put(DBHelper.COLUMN_RIWAYAT_KESEHATAN_BAYI_PEMERIKSAAN_LAIN, model.getPemeriksaanLain());
 
-        db.update(tableName, cv, DBHelper.COLUMN_INDEX+"=?", new String[]{""+model.getIndex()});
+        db.update(tableName, cv, DBHelper.COLUMN_ID +"=?", new String[]{""+model.getIndex()});
     }
 
     public void remove(){

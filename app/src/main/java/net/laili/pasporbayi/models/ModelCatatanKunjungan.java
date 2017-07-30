@@ -3,6 +3,7 @@ package net.laili.pasporbayi.models;
 import android.database.Cursor;
 
 import net.laili.pasporbayi.database.DBHelper;
+import net.laili.pasporbayi.utils.Constants;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -35,7 +36,7 @@ public class ModelCatatanKunjungan {
     }
 
     public ModelCatatanKunjungan(Cursor cursor){
-        this.index = cursor.getInt(cursor.getColumnIndex(DBHelper.COLUMN_INDEX));
+        this.index = cursor.getInt(cursor.getColumnIndex(DBHelper.COLUMN_ID));
         this.tanggal = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_CATATAN_KUNJUNGAN_TANGGAL));
         this.umur = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_CATATAN_KUNJUNGAN_UMUR));
         this.bb = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_CATATAN_KUNJUNGAN_BB));
@@ -46,7 +47,7 @@ public class ModelCatatanKunjungan {
     }
 
     public ModelCatatanKunjungan(JSONObject object) throws JSONException {
-        this.index = Integer.valueOf(object.getString(DBHelper.COLUMN_INDEX));
+        this.index = Integer.valueOf(object.getString(Constants.RESPONSE_KEY_INDEX));
         this.tanggal = object.getString(DBHelper.COLUMN_CATATAN_KUNJUNGAN_TANGGAL);
         this.umur = object.getString(DBHelper.COLUMN_CATATAN_KUNJUNGAN_UMUR);
         this.bb = object.getString(DBHelper.COLUMN_CATATAN_KUNJUNGAN_BB);

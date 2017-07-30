@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import net.laili.pasporbayi.models.ModelCatatanKunjungan;
 import net.laili.pasporbayi.models.ModelPerkembanganBayi;
 
 import java.util.ArrayList;
@@ -55,7 +54,7 @@ public class DaoPerkembanganBayi {
      */
     public boolean insert(ModelPerkembanganBayi model){
         ContentValues cv = new ContentValues();
-        cv.put(DBHelper.COLUMN_INDEX, model.getIndex());
+        cv.put(DBHelper.COLUMN_ID, model.getIndex());
         cv.put(DBHelper.COLUMN_PERKEMBANGAN_BAYI_UMUR, model.getUmur());
         cv.put(DBHelper.COLUMN_PERKEMBANGAN_BAYI_TIPE, model.getTipe());
         cv.put(DBHelper.COLUMN_PERKEMBANGAN_BAYI_DETAIL, model.getDetail());
@@ -68,7 +67,7 @@ public class DaoPerkembanganBayi {
         ContentValues cv = new ContentValues();
         cv.put(DBHelper.COLUMN_PERKEMBANGAN_BAYI_STATUS, model.getStatus());
 
-        db.update(tableName, cv, DBHelper.COLUMN_INDEX+"=?", new String[]{""+model.getIndex()});
+        db.update(tableName, cv, DBHelper.COLUMN_ID +"=?", new String[]{""+model.getIndex()});
     }
 
     public void reset(){

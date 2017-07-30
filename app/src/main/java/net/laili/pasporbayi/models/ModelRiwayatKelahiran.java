@@ -49,7 +49,7 @@ public class ModelRiwayatKelahiran {
     }
 
     public ModelRiwayatKelahiran(Cursor cursor){
-        this.index = cursor.getInt(cursor.getColumnIndex(DBHelper.COLUMN_INDEX));
+        this.index = cursor.getInt(cursor.getColumnIndex(DBHelper.COLUMN_ID));
         this.tanggalLahir = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_RIWAYAT_KELAHIRAN_TANGGAL_LAHIR));
         this.namaRumahSakit = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_RIWAYAT_KELAHIRAN_NAMA_RUMAH_SAKIT));
         this.penolongPersalinan = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_RIWAYAT_KELAHIRAN_PENOLONG_PERSALINAN));

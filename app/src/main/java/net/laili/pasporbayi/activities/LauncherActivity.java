@@ -46,7 +46,10 @@ public class LauncherActivity extends AppCompatActivity {
         daoPerkembanganBayi = DaoPerkembanganBayi.getInstance(getApplicationContext());
         daoCatatanImunisasi = DaoCatatanImunisasi.getInstance(getApplicationContext());
 
-        if (daoPerkembanganBayi.find().isEmpty() && daoCatatanImunisasi.find().isEmpty()) {
+        Toast.makeText(this, "PB : " +daoPerkembanganBayi.find().size(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "CI : " +daoCatatanImunisasi.find().size(), Toast.LENGTH_SHORT).show();
+
+        if (daoPerkembanganBayi.find().size() <= 0 && daoCatatanImunisasi.find().size() <= 0) {
             inisialisasi();
         } else {
             //inisialisasi();

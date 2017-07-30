@@ -1,5 +1,6 @@
 package net.laili.pasporbayi.activities;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -11,6 +12,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -152,9 +154,7 @@ public class MainActivity extends AppCompatActivity
                     composeEmail();
                     break;
                 case R.id.nav_logout:
-                    logout();
-                    startActivity(new Intent(this, LoginActivity.class));
-                    finish();
+                    showMessageLogout();
                     break;
             }
         }
@@ -181,6 +181,20 @@ public class MainActivity extends AppCompatActivity
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
         }
+    }
+
+    private void showMessageLogout(){
+        new AlertDialog.Builder(this)
+                .setMessage("Apakah anda yakin ingin keluar ?")
+                .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        logout();
+                        startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                        finish();
+                    }
+                }).setNegativeButton("Tidak", null)
+                .show();
     }
 
     private void logout() {

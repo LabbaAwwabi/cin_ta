@@ -67,7 +67,7 @@ public class ModelDataAnak {
     }
 
     public ModelDataAnak(Cursor cursor){
-        this.index = cursor.getInt(cursor.getColumnIndex(DBHelper.COLUMN_INDEX));
+        this.index = cursor.getInt(cursor.getColumnIndex(DBHelper.COLUMN_ID));
         this.nama = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_DATA_ANAK_NAMA));
         this.tanggalLahir = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_DATA_ANAK_TANGGAL_LAHIR));
         this.waktu = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_DATA_ANAK_WAKTU));

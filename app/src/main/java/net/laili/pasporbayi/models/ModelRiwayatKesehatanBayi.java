@@ -28,7 +28,7 @@ public class ModelRiwayatKesehatanBayi {
     }
 
     public ModelRiwayatKesehatanBayi(Cursor cursor){
-        this.index = cursor.getInt(cursor.getColumnIndex(DBHelper.COLUMN_INDEX));
+        this.index = cursor.getInt(cursor.getColumnIndex(DBHelper.COLUMN_ID));
         this.kesehatanBayiSaatLahir = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_RIWAYAT_KESEHATAN_BAYI_KESEHATAN_BAYI_SAAT_LAHIR));
         this.kesehatanBayiSelamaDiRuangBayi = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_RIWAYAT_KESEHATAN_BAYI_KESEHATAN_BAYI_SELAMA_DI_RUANG_BAYI));
         this.imunisasiYangTelahDiberikan = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_RIWAYAT_KESEHATAN_BAYI_IMUNISASI_YANG_TELAH_DIBERIKAN));
