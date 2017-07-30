@@ -9,6 +9,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class ModelRiwayatKesehatanBayi {
+    private int index;
     private String kesehatanBayiSaatLahir;
     private String kesehatanBayiSelamaDiRuangBayi;
     private String imunisasiYangTelahDiberikan;
@@ -17,7 +18,8 @@ public class ModelRiwayatKesehatanBayi {
 
     public ModelRiwayatKesehatanBayi(){}
 
-    public ModelRiwayatKesehatanBayi(String kesehatanBayiSaatLahir, String kesehatanBayiSelamaDiRuangBayi, String imunisasiYangTelahDiberikan, String pengobatanYangTelahDiberikan, String pemeriksaanLain) {
+    public ModelRiwayatKesehatanBayi(int index, String kesehatanBayiSaatLahir, String kesehatanBayiSelamaDiRuangBayi, String imunisasiYangTelahDiberikan, String pengobatanYangTelahDiberikan, String pemeriksaanLain) {
+        this.index = index;
         this.kesehatanBayiSaatLahir = kesehatanBayiSaatLahir;
         this.kesehatanBayiSelamaDiRuangBayi = kesehatanBayiSelamaDiRuangBayi;
         this.imunisasiYangTelahDiberikan = imunisasiYangTelahDiberikan;
@@ -26,6 +28,7 @@ public class ModelRiwayatKesehatanBayi {
     }
 
     public ModelRiwayatKesehatanBayi(Cursor cursor){
+        this.index = cursor.getInt(cursor.getColumnIndex(DBHelper.COLUMN_INDEX));
         this.kesehatanBayiSaatLahir = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_RIWAYAT_KESEHATAN_BAYI_KESEHATAN_BAYI_SAAT_LAHIR));
         this.kesehatanBayiSelamaDiRuangBayi = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_RIWAYAT_KESEHATAN_BAYI_KESEHATAN_BAYI_SELAMA_DI_RUANG_BAYI));
         this.imunisasiYangTelahDiberikan = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_RIWAYAT_KESEHATAN_BAYI_IMUNISASI_YANG_TELAH_DIBERIKAN));
@@ -39,6 +42,14 @@ public class ModelRiwayatKesehatanBayi {
         this.imunisasiYangTelahDiberikan = object.getString(DBHelper.COLUMN_RIWAYAT_KESEHATAN_BAYI_IMUNISASI_YANG_TELAH_DIBERIKAN);
         this.pengobatanYangTelahDiberikan = object.getString(DBHelper.COLUMN_RIWAYAT_KESEHATAN_BAYI_PENGOBATAN_YANG_TELAH_DIBERIKAN);
         this.pemeriksaanLain = object.getString(DBHelper.COLUMN_RIWAYAT_KESEHATAN_BAYI_PEMERIKSAAN_LAIN);
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
     }
 
     public String getKesehatanBayiSaatLahir() {
