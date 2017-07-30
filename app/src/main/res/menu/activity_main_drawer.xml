@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:checkableBehavior="single">
+    <group
+        android:id="@+id/primary_menu"
+        android:checkableBehavior="single">
         <item
             android:id="@+id/nav_beranda"
             android:icon="@mipmap/ic_home_black_24dp"
@@ -20,7 +22,9 @@
             android:title="Imunisasi" />
     </group>
 
-    <group android:menuCategory="secondary">
+    <group
+        android:id="@+id/secondary_menu"
+        android:checkableBehavior="none">
         <item
             android:id="@+id/nav_info_app"
             android:icon="@mipmap/ic_info_black_24dp"
@@ -28,7 +32,7 @@
         <item
             android:id="@+id/nav_contact"
             android:icon="@mipmap/ic_contact_mail_black_24dp"
-            android:title="Contact Developer" />
+            android:title="Hubungi Developer" />
         <item
             android:id="@+id/nav_logout"
             android:icon="@mipmap/ic_exit_to_app_black_24dp"

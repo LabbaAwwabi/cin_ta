@@ -1,4 +1,4 @@
-package net.laili.pasporbayi;
+package net.laili.pasporbayi.activities;
 
 import android.content.Intent;
 import android.os.Handler;
@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 
+import net.laili.pasporbayi.R;
 import net.laili.pasporbayi.auth.LoginActivity;
 import net.laili.pasporbayi.utils.AppSessionManager;
 

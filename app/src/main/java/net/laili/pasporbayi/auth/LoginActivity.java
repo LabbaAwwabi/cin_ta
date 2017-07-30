@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.AppCompatButton;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -21,7 +20,7 @@ import com.mobsandgeeks.saripaar.annotation.Email;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 import com.mobsandgeeks.saripaar.annotation.Password;
 
-import net.laili.pasporbayi.MainActivity;
+import net.laili.pasporbayi.activities.MainActivity;
 import net.laili.pasporbayi.R;
 import net.laili.pasporbayi.utils.AppController;
 import net.laili.pasporbayi.utils.AppSessionManager;
@@ -36,7 +35,6 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener, Validator.ValidationListener{
 
