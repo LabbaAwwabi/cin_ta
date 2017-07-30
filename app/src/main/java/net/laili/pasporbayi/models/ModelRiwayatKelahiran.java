@@ -10,6 +10,7 @@ import org.json.JSONObject;
 
 public class ModelRiwayatKelahiran {
 
+    private int index;
     private String tanggalLahir;
     private String namaRumahSakit;
     private String penolongPersalinan;
@@ -28,7 +29,8 @@ public class ModelRiwayatKelahiran {
 
     public ModelRiwayatKelahiran() {}
 
-    public ModelRiwayatKelahiran(String tanggalLahir, String namaRumahSakit, String penolongPersalinan, String umurKelahiran, String letakJanin, String caraLahir, String apgarScope, String beratBadanLahir, String panjangBadanLahir, String lingkarKepala, String lingkarDada, String taliPusat, String airKetuban, String beratPlacenta, String golonganDarah) {
+    public ModelRiwayatKelahiran(int index, String tanggalLahir, String namaRumahSakit, String penolongPersalinan, String umurKelahiran, String letakJanin, String caraLahir, String apgarScope, String beratBadanLahir, String panjangBadanLahir, String lingkarKepala, String lingkarDada, String taliPusat, String airKetuban, String beratPlacenta, String golonganDarah) {
+        this.index = index;
         this.tanggalLahir = tanggalLahir;
         this.namaRumahSakit = namaRumahSakit;
         this.penolongPersalinan = penolongPersalinan;
@@ -47,6 +49,7 @@ public class ModelRiwayatKelahiran {
     }
 
     public ModelRiwayatKelahiran(Cursor cursor){
+        this.index = cursor.getInt(cursor.getColumnIndex(DBHelper.COLUMN_INDEX));
         this.tanggalLahir = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_RIWAYAT_KELAHIRAN_TANGGAL_LAHIR));
         this.namaRumahSakit = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_RIWAYAT_KELAHIRAN_NAMA_RUMAH_SAKIT));
         this.penolongPersalinan = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_RIWAYAT_KELAHIRAN_PENOLONG_PERSALINAN));
@@ -80,6 +83,14 @@ public class ModelRiwayatKelahiran {
         this.airKetuban = object.getString(DBHelper.COLUMN_RIWAYAT_KELAHIRAN_AIR_KETUBAN);
         this.beratPlacenta = object.getString(DBHelper.COLUMN_RIWAYAT_KELAHIRAN_BERAT_PLACENTA);
         this.golonganDarah = object.getString(DBHelper.COLUMN_RIWAYAT_KELAHIRAN_GOLONGAN_DARAH);
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
     }
 
     public String getTanggalLahir() {

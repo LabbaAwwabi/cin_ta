@@ -76,4 +76,38 @@ public class DaoDataAnak {
 
         db.insert(tableName, null, cv);
     }
+
+    public void update(ModelDataAnak model){
+        ContentValues cv = new ContentValues();
+        cv.put(DBHelper.COLUMN_DATA_ANAK_NAMA, model.getNama());
+        cv.put(DBHelper.COLUMN_DATA_ANAK_TANGGAL_LAHIR, model.getTanggalLahir());
+        cv.put(DBHelper.COLUMN_DATA_ANAK_WAKTU, model.getWaktu());
+        cv.put(DBHelper.COLUMN_DATA_ANAK_BERAT, model.getBerat());
+        cv.put(DBHelper.COLUMN_DATA_ANAK_PANJANG, model.getPanjang());
+        cv.put(DBHelper.COLUMN_DATA_ANAK_LINGKAR_KEPALA, model.getLingkarKepala());
+        cv.put(DBHelper.COLUMN_DATA_ANAK_TEMPAT_LAHIR, model.getTempatLahir());
+        cv.put(DBHelper.COLUMN_DATA_ANAK_RUMAH_SAKIT, model.getRumahSakit());
+        cv.put(DBHelper.COLUMN_DATA_ANAK_NAMA_AYAH, model.getNama());
+        cv.put(DBHelper.COLUMN_DATA_ANAK_TTL_AYAH, model.getTempatTanggalLahirAyah());
+        cv.put(DBHelper.COLUMN_DATA_ANAK_PEKERJAAN_AYAH, model.getPekerjaanAyah());
+        cv.put(DBHelper.COLUMN_DATA_ANAK_ALAMAT_KANTOR_AYAH, model.getAlamatKantorAyah());
+        cv.put(DBHelper.COLUMN_DATA_ANAK_TELEPON_KANTOR_AYAH, model.getTeleponKantorAyah());
+        cv.put(DBHelper.COLUMN_DATA_ANAK_TELEPON_SELULER_AYAH, model.getTeleponSelulerAyah());
+        cv.put(DBHelper.COLUMN_DATA_ANAK_NAMA_IBU, model.getNamaIbu());
+        cv.put(DBHelper.COLUMN_DATA_ANAK_TTL_IBU, model.getTempatTanggalLahirIbu());
+        cv.put(DBHelper.COLUMN_DATA_ANAK_PEKERJAAN_IBU, model.getPekerjaanIbu());
+        cv.put(DBHelper.COLUMN_DATA_ANAK_ALAMAT_KANTOR_IBU, model.getAlamatKantorIbu());
+        cv.put(DBHelper.COLUMN_DATA_ANAK_TELEPON_KANTOR_IBU, model.getTeleponKantorIbu());
+        cv.put(DBHelper.COLUMN_DATA_ANAK_TELEPON_SELULER_IBU, model.getTeleponSelulerIbu());
+        cv.put(DBHelper.COLUMN_DATA_ANAK_NAMA_DOKTER_KANDUNGAN, model.getNamaDokterKandungan());
+        cv.put(DBHelper.COLUMN_DATA_ANAK_NAMA_DOKTER_ANAK, model.getNamaDokterAnak());
+        cv.put(DBHelper.COLUMN_DATA_ANAK_KONDISI_ATAU_SARAN, model.getKondisiAtauSaranKhusus());
+        cv.put(DBHelper.COLUMN_DATA_ANAK_JENIS_KELAMIN_ANAK, model.getJenisKelaminAnak());
+
+        db.update(tableName, cv, DBHelper.COLUMN_INDEX+"=?", new String[]{""+model.getIndex()});
+    }
+
+    public void remove(){
+        db.delete(tableName, null, null);
+    }
 }
