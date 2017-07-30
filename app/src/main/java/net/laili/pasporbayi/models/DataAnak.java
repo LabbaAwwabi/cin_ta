@@ -3,7 +3,7 @@ package net.laili.pasporbayi.models;
 
 import android.database.Cursor;
 
-import net.laili.pasporbayi.DBHelper;
+import net.laili.pasporbayi.database.DBHelper;
 
 import org.json.JSONException;
 import org.json.JSONObject;

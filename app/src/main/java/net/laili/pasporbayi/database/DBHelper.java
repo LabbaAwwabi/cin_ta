@@ -1,8 +1,10 @@
-package net.laili.pasporbayi;
+package net.laili.pasporbayi.database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import net.laili.pasporbayi.BuildConfig;
 
 /**
  * Created by Bend on 7/30/2017.
