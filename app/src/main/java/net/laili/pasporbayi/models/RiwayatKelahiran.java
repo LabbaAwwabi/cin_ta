@@ -1,274 +1,204 @@
 package net.laili.pasporbayi.models;
 
 
+import android.database.Cursor;
+
+import net.laili.pasporbayi.DBHelper;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class RiwayatKelahiran {
 
-private String nama;
-private String tanggalLahir;
-private String waktu;
-private String berat;
-private String panjang;
-private String lingkarKepala;
-private String tempatLahir;
-private String rumahSakit;
-private String namaAyah;
-private String tempatTanggalLahirAyah;
-private String pekerjaanAyah;
-private String alamatKantorAyah;
-private String teleponKantorAyah;
-private String teleponSelulerAyah;
-private String namaIbu;
-private String tempatTanggalLahirIbu;
-private String pekerjaanIbu;
-private String alamatKantorIbu;
-private String teleponKantorIbu;
-private String teleponSelulerIbu;
-private String namaDokterKandungan;
-private String namaDokterAnak;
-private String kondisiAtauSaranKhusus;
+    private String tanggalLahir;
+    private String namaRumahSakit;
+    private String penolongPersalinan;
+    private String umurKelahiran;
+    private String letakJanin;
+    private String caraLahir;
+    private String apgarScope;
+    private String beratBadanLahir;
+    private String panjangBadanLahir;
+    private String lingkarKepala;
+    private String lingkarDada;
+    private String taliPusat;
+    private String airKetuban;
+    private String beratPlacenta;
+    private String golonganDarah;
 
-/**
-* No args constructor for use in serialization
-* 
-*/
-public RiwayatKelahiran() {
-}
+    public RiwayatKelahiran() {}
 
-/**
-* 
-* @param berat
-* @param alamatKantorIbu
-* @param tempatLahir
-* @param teleponSelulerIbu
-* @param tempatTanggalLahirAyah
-* @param tanggalLahir
-* @param namaAyah
-* @param kondisiAtauSaranKhusus
-* @param namaIbu
-* @param waktu
-* @param namaDokterAnak
-* @param teleponKantorAyah
-* @param alamatKantorAyah
-* @param pekerjaanAyah
-* @param namaDokterKandungan
-* @param teleponKantorIbu
-* @param pekerjaanIbu
-* @param tempatTanggalLahirIbu
-* @param nama
-* @param teleponSelulerAyah
-* @param rumahSakit
-* @param panjang
-* @param lingkarKepala
-*/
-public RiwayatKelahiran(String nama, String tanggalLahir, String waktu, String berat, String panjang, String lingkarKepala, String tempatLahir, String rumahSakit, String namaAyah, String tempatTanggalLahirAyah, String pekerjaanAyah, String alamatKantorAyah, String teleponKantorAyah, String teleponSelulerAyah, String namaIbu, String tempatTanggalLahirIbu, String pekerjaanIbu, String alamatKantorIbu, String teleponKantorIbu, String teleponSelulerIbu, String namaDokterKandungan, String namaDokterAnak, String kondisiAtauSaranKhusus) {
-super();
-this.nama = nama;
-this.tanggalLahir = tanggalLahir;
-this.waktu = waktu;
-this.berat = berat;
-this.panjang = panjang;
-this.lingkarKepala = lingkarKepala;
-this.tempatLahir = tempatLahir;
-this.rumahSakit = rumahSakit;
-this.namaAyah = namaAyah;
-this.tempatTanggalLahirAyah = tempatTanggalLahirAyah;
-this.pekerjaanAyah = pekerjaanAyah;
-this.alamatKantorAyah = alamatKantorAyah;
-this.teleponKantorAyah = teleponKantorAyah;
-this.teleponSelulerAyah = teleponSelulerAyah;
-this.namaIbu = namaIbu;
-this.tempatTanggalLahirIbu = tempatTanggalLahirIbu;
-this.pekerjaanIbu = pekerjaanIbu;
-this.alamatKantorIbu = alamatKantorIbu;
-this.teleponKantorIbu = teleponKantorIbu;
-this.teleponSelulerIbu = teleponSelulerIbu;
-this.namaDokterKandungan = namaDokterKandungan;
-this.namaDokterAnak = namaDokterAnak;
-this.kondisiAtauSaranKhusus = kondisiAtauSaranKhusus;
-}
+    public RiwayatKelahiran(String tanggalLahir, String namaRumahSakit, String penolongPersalinan, String umurKelahiran, String letakJanin, String caraLahir, String apgarScope, String beratBadanLahir, String panjangBadanLahir, String lingkarKepala, String lingkarDada, String taliPusat, String airKetuban, String beratPlacenta, String golonganDarah) {
+        this.tanggalLahir = tanggalLahir;
+        this.namaRumahSakit = namaRumahSakit;
+        this.penolongPersalinan = penolongPersalinan;
+        this.umurKelahiran = umurKelahiran;
+        this.letakJanin = letakJanin;
+        this.caraLahir = caraLahir;
+        this.apgarScope = apgarScope;
+        this.beratBadanLahir = beratBadanLahir;
+        this.panjangBadanLahir = panjangBadanLahir;
+        this.lingkarKepala = lingkarKepala;
+        this.lingkarDada = lingkarDada;
+        this.taliPusat = taliPusat;
+        this.airKetuban = airKetuban;
+        this.beratPlacenta = beratPlacenta;
+        this.golonganDarah = golonganDarah;
+    }
 
-public String getNama() {
-return nama;
-}
+    public RiwayatKelahiran(Cursor cursor){
+        this.tanggalLahir = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_RIWAYAT_KELAHIRAN_TANGGAL_LAHIR));
+        this.namaRumahSakit = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_RIWAYAT_KELAHIRAN_NAMA_RUMAH_SAKIT));
+        this.penolongPersalinan = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_RIWAYAT_KELAHIRAN_PENOLONG_PERSALINAN));
+        this.umurKelahiran = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_RIWAYAT_KELAHIRAN_UMUR_KELAHIRAN));
+        this.letakJanin = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_RIWAYAT_KELAHIRAN_LETAK_JANIN));
+        this.caraLahir = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_RIWAYAT_KELAHIRAN_CARA_LAHIR));
+        this.apgarScope = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_RIWAYAT_KELAHIRAN_APGAR_SCOPE));
+        this.beratBadanLahir = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_RIWAYAT_KELAHIRAN_BERAT_BADAN_LAHIR));
+        this.panjangBadanLahir = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_RIWAYAT_KELAHIRAN_PANJANG_BADAN_LAHIR));
+        this.lingkarKepala = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_RIWAYAT_KELAHIRAN_LINGKAR_KEPALA));
+        this.lingkarDada = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_RIWAYAT_KELAHIRAN_LINGKAR_DADA));
+        this.taliPusat = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_RIWAYAT_KELAHIRAN_TALI_PUSAT));
+        this.airKetuban = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_RIWAYAT_KELAHIRAN_AIR_KETUBAN));
+        this.beratPlacenta = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_RIWAYAT_KELAHIRAN_BERAT_PLACENTA));
+        this.golonganDarah = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_RIWAYAT_KELAHIRAN_GOLONGAN_DARAH));
+    }
 
-public void setNama(String nama) {
-this.nama = nama;
-}
+    public RiwayatKelahiran(JSONObject object) throws JSONException {
+        this.tanggalLahir = object.getString(DBHelper.COLUMN_RIWAYAT_KELAHIRAN_TANGGAL_LAHIR);
+        this.namaRumahSakit = object.getString(DBHelper.COLUMN_RIWAYAT_KELAHIRAN_NAMA_RUMAH_SAKIT);
+        this.penolongPersalinan = object.getString(DBHelper.COLUMN_RIWAYAT_KELAHIRAN_PENOLONG_PERSALINAN);
+        this.umurKelahiran = object.getString(DBHelper.COLUMN_RIWAYAT_KELAHIRAN_UMUR_KELAHIRAN);
+        this.letakJanin = object.getString(DBHelper.COLUMN_RIWAYAT_KELAHIRAN_LETAK_JANIN);
+        this.caraLahir = object.getString(DBHelper.COLUMN_RIWAYAT_KELAHIRAN_CARA_LAHIR);
+        this.apgarScope = object.getString(DBHelper.COLUMN_RIWAYAT_KELAHIRAN_APGAR_SCOPE);
+        this.beratBadanLahir = object.getString(DBHelper.COLUMN_RIWAYAT_KELAHIRAN_BERAT_BADAN_LAHIR);
+        this.panjangBadanLahir = object.getString(DBHelper.COLUMN_RIWAYAT_KELAHIRAN_PANJANG_BADAN_LAHIR);
+        this.lingkarKepala = object.getString(DBHelper.COLUMN_RIWAYAT_KELAHIRAN_LINGKAR_KEPALA);
+        this.lingkarDada = object.getString(DBHelper.COLUMN_RIWAYAT_KELAHIRAN_LINGKAR_DADA);
+        this.taliPusat = object.getString(DBHelper.COLUMN_RIWAYAT_KELAHIRAN_TALI_PUSAT);
+        this.airKetuban = object.getString(DBHelper.COLUMN_RIWAYAT_KELAHIRAN_AIR_KETUBAN);
+        this.beratPlacenta = object.getString(DBHelper.COLUMN_RIWAYAT_KELAHIRAN_BERAT_PLACENTA);
+        this.golonganDarah = object.getString(DBHelper.COLUMN_RIWAYAT_KELAHIRAN_GOLONGAN_DARAH);
+    }
 
-public String getTanggalLahir() {
-return tanggalLahir;
-}
+    public String getTanggalLahir() {
+        return tanggalLahir;
+    }
 
-public void setTanggalLahir(String tanggalLahir) {
-this.tanggalLahir = tanggalLahir;
-}
+    public void setTanggalLahir(String tanggalLahir) {
+        this.tanggalLahir = tanggalLahir;
+    }
 
-public String getWaktu() {
-return waktu;
-}
+    public String getNamaRumahSakit() {
+        return namaRumahSakit;
+    }
 
-public void setWaktu(String waktu) {
-this.waktu = waktu;
-}
+    public void setNamaRumahSakit(String namaRumahSakit) {
+        this.namaRumahSakit = namaRumahSakit;
+    }
 
-public String getBerat() {
-return berat;
-}
+    public String getPenolongPersalinan() {
+        return penolongPersalinan;
+    }
 
-public void setBerat(String berat) {
-this.berat = berat;
-}
+    public void setPenolongPersalinan(String penolongPersalinan) {
+        this.penolongPersalinan = penolongPersalinan;
+    }
 
-public String getPanjang() {
-return panjang;
-}
+    public String getUmurKelahiran() {
+        return umurKelahiran;
+    }
 
-public void setPanjang(String panjang) {
-this.panjang = panjang;
-}
+    public void setUmurKelahiran(String umurKelahiran) {
+        this.umurKelahiran = umurKelahiran;
+    }
 
-public String getLingkarKepala() {
-return lingkarKepala;
-}
+    public String getLetakJanin() {
+        return letakJanin;
+    }
 
-public void setLingkarKepala(String lingkarKepala) {
-this.lingkarKepala = lingkarKepala;
-}
+    public void setLetakJanin(String letakJanin) {
+        this.letakJanin = letakJanin;
+    }
 
-public String getTempatLahir() {
-return tempatLahir;
-}
+    public String getCaraLahir() {
+        return caraLahir;
+    }
 
-public void setTempatLahir(String tempatLahir) {
-this.tempatLahir = tempatLahir;
-}
+    public void setCaraLahir(String caraLahir) {
+        this.caraLahir = caraLahir;
+    }
 
-public String getRumahSakit() {
-return rumahSakit;
-}
+    public String getApgarScope() {
+        return apgarScope;
+    }
 
-public void setRumahSakit(String rumahSakit) {
-this.rumahSakit = rumahSakit;
-}
+    public void setApgarScope(String apgarScope) {
+        this.apgarScope = apgarScope;
+    }
 
-public String getNamaAyah() {
-return namaAyah;
-}
+    public String getBeratBadanLahir() {
+        return beratBadanLahir;
+    }
 
-public void setNamaAyah(String namaAyah) {
-this.namaAyah = namaAyah;
-}
+    public void setBeratBadanLahir(String beratBadanLahir) {
+        this.beratBadanLahir = beratBadanLahir;
+    }
 
-public String getTempatTanggalLahirAyah() {
-return tempatTanggalLahirAyah;
-}
+    public String getPanjangBadanLahir() {
+        return panjangBadanLahir;
+    }
 
-public void setTempatTanggalLahirAyah(String tempatTanggalLahirAyah) {
-this.tempatTanggalLahirAyah = tempatTanggalLahirAyah;
-}
+    public void setPanjangBadanLahir(String panjangBadanLahir) {
+        this.panjangBadanLahir = panjangBadanLahir;
+    }
 
-public String getPekerjaanAyah() {
-return pekerjaanAyah;
-}
+    public String getLingkarKepala() {
+        return lingkarKepala;
+    }
 
-public void setPekerjaanAyah(String pekerjaanAyah) {
-this.pekerjaanAyah = pekerjaanAyah;
-}
+    public void setLingkarKepala(String lingkarKepala) {
+        this.lingkarKepala = lingkarKepala;
+    }
 
-public String getAlamatKantorAyah() {
-return alamatKantorAyah;
-}
+    public String getLingkarDada() {
+        return lingkarDada;
+    }
 
-public void setAlamatKantorAyah(String alamatKantorAyah) {
-this.alamatKantorAyah = alamatKantorAyah;
-}
+    public void setLingkarDada(String lingkarDada) {
+        this.lingkarDada = lingkarDada;
+    }
 
-public String getTeleponKantorAyah() {
-return teleponKantorAyah;
-}
+    public String getTaliPusat() {
+        return taliPusat;
+    }
 
-public void setTeleponKantorAyah(String teleponKantorAyah) {
-this.teleponKantorAyah = teleponKantorAyah;
-}
+    public void setTaliPusat(String taliPusat) {
+        this.taliPusat = taliPusat;
+    }
 
-public String getTeleponSelulerAyah() {
-return teleponSelulerAyah;
-}
+    public String getAirKetuban() {
+        return airKetuban;
+    }
 
-public void setTeleponSelulerAyah(String teleponSelulerAyah) {
-this.teleponSelulerAyah = teleponSelulerAyah;
-}
+    public void setAirKetuban(String airKetuban) {
+        this.airKetuban = airKetuban;
+    }
 
-public String getNamaIbu() {
-return namaIbu;
-}
+    public String getBeratPlacenta() {
+        return beratPlacenta;
+    }
 
-public void setNamaIbu(String namaIbu) {
-this.namaIbu = namaIbu;
-}
+    public void setBeratPlacenta(String beratPlacenta) {
+        this.beratPlacenta = beratPlacenta;
+    }
 
-public String getTempatTanggalLahirIbu() {
-return tempatTanggalLahirIbu;
-}
+    public String getGolonganDarah() {
+        return golonganDarah;
+    }
 
-public void setTempatTanggalLahirIbu(String tempatTanggalLahirIbu) {
-this.tempatTanggalLahirIbu = tempatTanggalLahirIbu;
-}
-
-public String getPekerjaanIbu() {
-return pekerjaanIbu;
-}
-
-public void setPekerjaanIbu(String pekerjaanIbu) {
-this.pekerjaanIbu = pekerjaanIbu;
-}
-
-public String getAlamatKantorIbu() {
-return alamatKantorIbu;
-}
-
-public void setAlamatKantorIbu(String alamatKantorIbu) {
-this.alamatKantorIbu = alamatKantorIbu;
-}
-
-public String getTeleponKantorIbu() {
-return teleponKantorIbu;
-}
-
-public void setTeleponKantorIbu(String teleponKantorIbu) {
-this.teleponKantorIbu = teleponKantorIbu;
-}
-
-public String getTeleponSelulerIbu() {
-return teleponSelulerIbu;
-}
-
-public void setTeleponSelulerIbu(String teleponSelulerIbu) {
-this.teleponSelulerIbu = teleponSelulerIbu;
-}
-
-public String getNamaDokterKandungan() {
-return namaDokterKandungan;
-}
-
-public void setNamaDokterKandungan(String namaDokterKandungan) {
-this.namaDokterKandungan = namaDokterKandungan;
-}
-
-public String getNamaDokterAnak() {
-return namaDokterAnak;
-}
-
-public void setNamaDokterAnak(String namaDokterAnak) {
-this.namaDokterAnak = namaDokterAnak;
-}
-
-public String getKondisiAtauSaranKhusus() {
-return kondisiAtauSaranKhusus;
-}
-
-public void setKondisiAtauSaranKhusus(String kondisiAtauSaranKhusus) {
-this.kondisiAtauSaranKhusus = kondisiAtauSaranKhusus;
-}
-
+    public void setGolonganDarah(String golonganDarah) {
+        this.golonganDarah = golonganDarah;
+    }
 }

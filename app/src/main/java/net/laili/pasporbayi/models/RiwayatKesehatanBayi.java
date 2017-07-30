@@ -1,76 +1,83 @@
 package net.laili.pasporbayi.models;
 
 
+import android.database.Cursor;
+
+import net.laili.pasporbayi.DBHelper;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class RiwayatKesehatanBayi {
+    private String kesehatanBayiSaatLahir;
+    private String kesehatanBayiSelamaDiRuangBayi;
+    private String imunisasiYangTelahDiberikan;
+    private String pengobatanYangTelahDiberikan;
+    private String pemeriksaanLain;
 
-private String kesehatanBayiSaatLahir;
-private String kesehatanBayiSelamaDiRuangBayi;
-private String imunisasiYangTelahDiberikan;
-private String pengobatanYangTelahDiberikan;
-private String pemeriksaanLain;
+    public RiwayatKesehatanBayi(){}
 
-/**
-* No args constructor for use in serialization
-* 
-*/
-public RiwayatKesehatanBayi() {
-}
+    public RiwayatKesehatanBayi(String kesehatanBayiSaatLahir, String kesehatanBayiSelamaDiRuangBayi, String imunisasiYangTelahDiberikan, String pengobatanYangTelahDiberikan, String pemeriksaanLain) {
+        this.kesehatanBayiSaatLahir = kesehatanBayiSaatLahir;
+        this.kesehatanBayiSelamaDiRuangBayi = kesehatanBayiSelamaDiRuangBayi;
+        this.imunisasiYangTelahDiberikan = imunisasiYangTelahDiberikan;
+        this.pengobatanYangTelahDiberikan = pengobatanYangTelahDiberikan;
+        this.pemeriksaanLain = pemeriksaanLain;
+    }
 
-/**
-* 
-* @param pemeriksaanLain
-* @param kesehatanBayiSaatLahir
-* @param imunisasiYangTelahDiberikan
-* @param pengobatanYangTelahDiberikan
-* @param kesehatanBayiSelamaDiRuangBayi
-*/
-public RiwayatKesehatanBayi(String kesehatanBayiSaatLahir, String kesehatanBayiSelamaDiRuangBayi, String imunisasiYangTelahDiberikan, String pengobatanYangTelahDiberikan, String pemeriksaanLain) {
-super();
-this.kesehatanBayiSaatLahir = kesehatanBayiSaatLahir;
-this.kesehatanBayiSelamaDiRuangBayi = kesehatanBayiSelamaDiRuangBayi;
-this.imunisasiYangTelahDiberikan = imunisasiYangTelahDiberikan;
-this.pengobatanYangTelahDiberikan = pengobatanYangTelahDiberikan;
-this.pemeriksaanLain = pemeriksaanLain;
-}
+    public RiwayatKesehatanBayi(Cursor cursor){
+        this.kesehatanBayiSaatLahir = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_RIWAYAT_KESEHATAN_BAYI_KESEHATAN_BAYI_SAAT_LAHIR));
+        this.kesehatanBayiSelamaDiRuangBayi = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_RIWAYAT_KESEHATAN_BAYI_KESEHATAN_BAYI_SELAMA_DI_RUANG_BAYI));
+        this.imunisasiYangTelahDiberikan = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_RIWAYAT_KESEHATAN_BAYI_IMUNISASI_YANG_TELAH_DIBERIKAN));
+        this.pengobatanYangTelahDiberikan = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_RIWAYAT_KESEHATAN_BAYI_PENGOBATAN_YANG_TELAH_DIBERIKAN));
+        this.pemeriksaanLain = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_RIWAYAT_KESEHATAN_BAYI_PEMERIKSAAN_LAIN));
+    }
 
-public String getKesehatanBayiSaatLahir() {
-return kesehatanBayiSaatLahir;
-}
+    public RiwayatKesehatanBayi(JSONObject object) throws JSONException {
+        this.kesehatanBayiSaatLahir = object.getString(DBHelper.COLUMN_RIWAYAT_KESEHATAN_BAYI_KESEHATAN_BAYI_SAAT_LAHIR);
+        this.kesehatanBayiSelamaDiRuangBayi = object.getString(DBHelper.COLUMN_RIWAYAT_KESEHATAN_BAYI_KESEHATAN_BAYI_SELAMA_DI_RUANG_BAYI);
+        this.imunisasiYangTelahDiberikan = object.getString(DBHelper.COLUMN_RIWAYAT_KESEHATAN_BAYI_IMUNISASI_YANG_TELAH_DIBERIKAN);
+        this.pengobatanYangTelahDiberikan = object.getString(DBHelper.COLUMN_RIWAYAT_KESEHATAN_BAYI_PENGOBATAN_YANG_TELAH_DIBERIKAN);
+        this.pemeriksaanLain = object.getString(DBHelper.COLUMN_RIWAYAT_KESEHATAN_BAYI_PEMERIKSAAN_LAIN);
+    }
 
-public void setKesehatanBayiSaatLahir(String kesehatanBayiSaatLahir) {
-this.kesehatanBayiSaatLahir = kesehatanBayiSaatLahir;
-}
+    public String getKesehatanBayiSaatLahir() {
+        return kesehatanBayiSaatLahir;
+    }
 
-public String getKesehatanBayiSelamaDiRuangBayi() {
-return kesehatanBayiSelamaDiRuangBayi;
-}
+    public void setKesehatanBayiSaatLahir(String kesehatanBayiSaatLahir) {
+        this.kesehatanBayiSaatLahir = kesehatanBayiSaatLahir;
+    }
 
-public void setKesehatanBayiSelamaDiRuangBayi(String kesehatanBayiSelamaDiRuangBayi) {
-this.kesehatanBayiSelamaDiRuangBayi = kesehatanBayiSelamaDiRuangBayi;
-}
+    public String getKesehatanBayiSelamaDiRuangBayi() {
+        return kesehatanBayiSelamaDiRuangBayi;
+    }
 
-public String getImunisasiYangTelahDiberikan() {
-return imunisasiYangTelahDiberikan;
-}
+    public void setKesehatanBayiSelamaDiRuangBayi(String kesehatanBayiSelamaDiRuangBayi) {
+        this.kesehatanBayiSelamaDiRuangBayi = kesehatanBayiSelamaDiRuangBayi;
+    }
 
-public void setImunisasiYangTelahDiberikan(String imunisasiYangTelahDiberikan) {
-this.imunisasiYangTelahDiberikan = imunisasiYangTelahDiberikan;
-}
+    public String getImunisasiYangTelahDiberikan() {
+        return imunisasiYangTelahDiberikan;
+    }
 
-public String getPengobatanYangTelahDiberikan() {
-return pengobatanYangTelahDiberikan;
-}
+    public void setImunisasiYangTelahDiberikan(String imunisasiYangTelahDiberikan) {
+        this.imunisasiYangTelahDiberikan = imunisasiYangTelahDiberikan;
+    }
 
-public void setPengobatanYangTelahDiberikan(String pengobatanYangTelahDiberikan) {
-this.pengobatanYangTelahDiberikan = pengobatanYangTelahDiberikan;
-}
+    public String getPengobatanYangTelahDiberikan() {
+        return pengobatanYangTelahDiberikan;
+    }
 
-public String getPemeriksaanLain() {
-return pemeriksaanLain;
-}
+    public void setPengobatanYangTelahDiberikan(String pengobatanYangTelahDiberikan) {
+        this.pengobatanYangTelahDiberikan = pengobatanYangTelahDiberikan;
+    }
 
-public void setPemeriksaanLain(String pemeriksaanLain) {
-this.pemeriksaanLain = pemeriksaanLain;
-}
+    public String getPemeriksaanLain() {
+        return pemeriksaanLain;
+    }
 
+    public void setPemeriksaanLain(String pemeriksaanLain) {
+        this.pemeriksaanLain = pemeriksaanLain;
+    }
 }
