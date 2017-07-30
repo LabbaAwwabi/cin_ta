@@ -8,4 +8,8 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_about_app">Tentang Paspor Bayi</string>
+
+    <string name="about_app">Passpor Bayi adalah aplikasi yang dikembangkan untuk memonitoring perkembangan dan kesehatan balita yang merupakan hal yang sangat penting untuk diamati. Di dalam aplikasi ini juga terdapat rekap medis dari identitas diri balita, kesehatan hingga catatan penting ketika balita melakukan pemeriksaan ke dokter.</string>
+    <string name="footer_about_app">Develop By Nova Rizqi Laili</string>
 </resources>

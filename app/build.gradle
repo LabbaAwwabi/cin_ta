@@ -12,6 +12,7 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         buildConfigField 'String', 'DB_NAME', '"net.laili.passporbayi.db"'
+        buildConfigField 'String', 'EMAIL_DEVELOPER', '"novarizqi34@gmail.com"'
     }
     buildTypes {
         release {

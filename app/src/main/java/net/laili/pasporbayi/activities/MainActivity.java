@@ -1,10 +1,16 @@
 package net.laili.pasporbayi.activities;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -18,6 +24,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import net.laili.pasporbayi.BuildConfig;
 import net.laili.pasporbayi.R;
 import net.laili.pasporbayi.auth.LoginActivity;
 import net.laili.pasporbayi.database.DaoCatatanImunisasi;
@@ -26,36 +33,56 @@ import net.laili.pasporbayi.database.DaoDataAnak;
 import net.laili.pasporbayi.database.DaoPerkembanganBayi;
 import net.laili.pasporbayi.database.DaoRiwayatKelahiran;
 import net.laili.pasporbayi.database.DaoRiwayatKesehatanBayi;
+import net.laili.pasporbayi.fragments.BerandaFragment;
+import net.laili.pasporbayi.fragments.DataBalitaFragment;
+import net.laili.pasporbayi.fragments.ImunisasiFragment;
+import net.laili.pasporbayi.fragments.TumbuhKembangFragment;
 import net.laili.pasporbayi.utils.AppSessionManager;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private boolean doubleBackToExitPressedOnce = false;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.drawer_layout)
+    DrawerLayout drawer;
+    @BindView(R.id.nav_view)
+    NavigationView navigationView;
 
     private AppSessionManager appSessionManager;
+    private boolean doubleBackToExitPressedOnce = false;
+    private int curId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        ButterKnife.bind(this);
         setSupportActionBar(toolbar);
 
         appSessionManager = new AppSessionManager(this);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         View headerLayout = navigationView.getHeaderView(0);
         TextView emailUser = (TextView) headerLayout.findViewById(R.id.text_email_user);
         emailUser.setText(appSessionManager.getEmailUser());
+
+        curId = R.id.nav_beranda;
+        navigationView.setCheckedItem(curId);
+        Fragment fragment = new BerandaFragment();
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.fragment_main, fragment);
+        transaction.commit();
 
         Log.i("CheckDao", "perkembangan bayi : " + DaoPerkembanganBayi.getInstance(this).find().size());
 //        Log.i("CheckDao", DaoCatatanImunisasi.getInstance(this).find().toString());
@@ -93,29 +120,67 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_beranda) {
-            // Handle the camera action
-        } else if (id == R.id.nav_data_balita) {
-
-        } else if (id == R.id.nav_tumbuh_kembang) {
-
-        } else if (id == R.id.nav_imunisasi) {
-
-        } else if (id == R.id.nav_info_app) {
-
-        } else if (id == R.id.nav_contact) {
-
-        } else if (id == R.id.nav_logout) {
-            logout();
-            startActivity(new Intent(this, LoginActivity.class));
-            finish();
-        } else {
-            return false;
+        //handle primary nav
+        if (item.getGroupId() == R.id.primary_menu) {
+            FragmentManager manager = getSupportFragmentManager();
+            FragmentTransaction transaction = manager.beginTransaction();
+            Fragment fragment = null;
+            switch (id) {
+                case R.id.nav_beranda:
+                    fragment = new BerandaFragment();
+                    break;
+                case R.id.nav_data_balita:
+                    fragment = new DataBalitaFragment();
+                    break;
+                case R.id.nav_tumbuh_kembang:
+                    fragment = new TumbuhKembangFragment();
+                    break;
+                case R.id.nav_imunisasi:
+                    fragment = new ImunisasiFragment();
+                    break;
+            }
+            transaction.replace(R.id.fragment_main, fragment);
+            transaction.commit();
+        }
+        //handle secondary nav
+        else {
+            switch (id) {
+                case R.id.nav_info_app:
+                    startActivity(new Intent(this, AboutAppActivity.class));
+                    break;
+                case R.id.nav_contact:
+                    composeEmail();
+                    break;
+                case R.id.nav_logout:
+                    logout();
+                    startActivity(new Intent(this, LoginActivity.class));
+                    finish();
+                    break;
+            }
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void composeEmail() {
+        String body = "";
+        try {
+            body = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
+            body = "\n\n-----------------------------\nPlease don't remove this information\n Device OS: Android \n Device OS version: " +
+                    Build.VERSION.RELEASE + "\n App Version: " + body + "\n Device Brand: " + Build.BRAND +
+                    "\n Device Model: " + Build.MODEL + "\n Device Manufacturer: " + Build.MANUFACTURER;
+        } catch (PackageManager.NameNotFoundException e) {
+
+        }
+
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+        intent.putExtra(Intent.EXTRA_EMAIL, new String[]{BuildConfig.EMAIL_DEVELOPER});
+        intent.putExtra(Intent.EXTRA_TEXT, body);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
     }
 
     private void logout() {
