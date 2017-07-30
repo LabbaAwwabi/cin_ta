@@ -28,8 +28,8 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String COLUMN_CATATAN_IMUNISASI_IMUNISASI = "imunisasi";
     public static final String COLUMN_CATATAN_IMUNISASI_UMUR = "umur";
     public static final String COLUMN_CATATAN_IMUNISASI_TANGGAL = "tanggal";
-    private static final String CREATE_TABLE_CATATAN_IMUNISASI = "CREATE TABLE `" +TABLE_CATATAN_IMUNISASI+ "(" +
-            "`" +COLUMN_INDEX+ "` INT PRIMARY KEY, " +
+    private static final String CREATE_TABLE_CATATAN_IMUNISASI = "CREATE TABLE `" + TABLE_CATATAN_IMUNISASI + "`(" +
+            "`" + COLUMN_INDEX + "` INTEGER PRIMARY KEY, " +
             "`" +COLUMN_CATATAN_IMUNISASI_IMUNISASI+ "` TEXT, " +
             "`" +COLUMN_CATATAN_IMUNISASI_UMUR+ "` TEXT, " +
             "`" +COLUMN_CATATAN_IMUNISASI_TANGGAL+ "` TEXT); ";
@@ -42,8 +42,8 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String COLUMN_CATATAN_KUNJUNGAN_LK = "lk";
     public static final String COLUMN_CATATAN_KUNJUNGAN_PEMERIKSAAN = "pemeriksaan";
     public static final String COLUMN_CATATAN_KUNJUNGAN_PENGOBATAN = "pengobatan";
-    private static final String CREATE_TABLE_CATATAN_KUNJUNGAN = "CREATE TABLE `" +TABLE_CATATAN_KUNJUNGAN+ "(" +
-            "`" +COLUMN_INDEX+ "` INT PRIMARY KEY, " +
+    private static final String CREATE_TABLE_CATATAN_KUNJUNGAN = "CREATE TABLE `" + TABLE_CATATAN_KUNJUNGAN + "`(" +
+            "`" + COLUMN_INDEX + "` INTEGER PRIMARY KEY, " +
             "`" +COLUMN_CATATAN_KUNJUNGAN_TANGGAL+ "` TEXT, " +
             "`" +COLUMN_CATATAN_KUNJUNGAN_UMUR+ "` TEXT, " +
             "`" +COLUMN_CATATAN_KUNJUNGAN_BB+ "` TEXT, " +
@@ -77,8 +77,8 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String COLUMN_DATA_ANAK_NAMA_DOKTER_ANAK = "nama_dokter_anak";
     public static final String COLUMN_DATA_ANAK_KONDISI_ATAU_SARAN = "kondisi_atau_saran_khusus";
     public static final String COLUMN_DATA_ANAK_JENIS_KELAMIN_ANAK = "jenis_kelamin_anak";
-    private static final String CREATE_TABLE_DATA_ANAK = "CREATE TABLE `" +TABLE_DATA_ANAK+ "(" +
-            "`" +COLUMN_INDEX+ "` INT PRIMARY KEY AUTOINCREMENT, " +
+    private static final String CREATE_TABLE_DATA_ANAK = "CREATE TABLE `" + TABLE_DATA_ANAK + "`(" +
+            "`" + COLUMN_INDEX + "` INTEGER PRIMARY KEY AUTOINCREMENT, " +
             "`" +COLUMN_DATA_ANAK_NAMA+ "` TEXT, " +
             "`" +COLUMN_DATA_ANAK_TANGGAL_LAHIR+ "` TEXT, " +
             "`" +COLUMN_DATA_ANAK_WAKTU+ "` TEXT, " +
@@ -109,8 +109,8 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String COLUMN_PERKEMBANGAN_BAYI_TIPE = "tipe";
     public static final String COLUMN_PERKEMBANGAN_BAYI_DETAIL = "detail";
     public static final String COLUMN_PERKEMBANGAN_BAYI_STATUS = "status";
-    private static final String CREATE_TABLE_PERKEMBANGAN_BAYI = "CREATE TABLE `" +TABLE_PERKEMBANGAN_BAYI+ "(" +
-            "`" +COLUMN_INDEX+ "` INT PRIMARY KEY, " +
+    private static final String CREATE_TABLE_PERKEMBANGAN_BAYI = "CREATE TABLE `" + TABLE_PERKEMBANGAN_BAYI + "`(" +
+            "`" + COLUMN_INDEX + "` INTEGER PRIMARY KEY, " +
             "`" +COLUMN_PERKEMBANGAN_BAYI_UMUR+ "` TEXT, " +
             "`" +COLUMN_PERKEMBANGAN_BAYI_TIPE+ "` TEXT, " +
             "`" +COLUMN_PERKEMBANGAN_BAYI_DETAIL+ "` TEXT, " +
@@ -132,8 +132,8 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String COLUMN_RIWAYAT_KELAHIRAN_AIR_KETUBAN = "air_ketuban";
     public static final String COLUMN_RIWAYAT_KELAHIRAN_BERAT_PLACENTA = "berat_placenta";
     public static final String COLUMN_RIWAYAT_KELAHIRAN_GOLONGAN_DARAH = "golongan_darah";
-    private static final String CREATE_TABLE_RIWAYAT_KELAHIRAN = "CREATE TABLE `" +TABLE_RIWAYAT_KELAHIRAN+ "(" +
-            "`" +COLUMN_INDEX+ "` INT PRIMARY KEY AUTOINCREMENT, " +
+    private static final String CREATE_TABLE_RIWAYAT_KELAHIRAN = "CREATE TABLE `" + TABLE_RIWAYAT_KELAHIRAN + "`(" +
+            "`" + COLUMN_INDEX + "` INTEGER PRIMARY KEY AUTOINCREMENT, " +
             "`" +COLUMN_RIWAYAT_KELAHIRAN_TANGGAL_LAHIR+ "` TEXT, " +
             "`" +COLUMN_RIWAYAT_KELAHIRAN_NAMA_RUMAH_SAKIT+ "` TEXT, " +
             "`" +COLUMN_RIWAYAT_KELAHIRAN_PENOLONG_PERSALINAN+ "` TEXT, " +
@@ -156,8 +156,8 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String COLUMN_RIWAYAT_KESEHATAN_BAYI_IMUNISASI_YANG_TELAH_DIBERIKAN = "imunisasi_yang_telah_diberikan";
     public static final String COLUMN_RIWAYAT_KESEHATAN_BAYI_PENGOBATAN_YANG_TELAH_DIBERIKAN = "pengobatan_yang_telah_diberikan";
     public static final String COLUMN_RIWAYAT_KESEHATAN_BAYI_PEMERIKSAAN_LAIN = "pemeriksaan_lain";
-    private static final String CREATE_TABLE_RIWAYAT_KESEHATAN_BAYI = "CREATE TABLE `" +TABLE_RIWAYAT_KESEHATAN_BAYI+ "(" +
-            "`" +COLUMN_INDEX+ "` INT PRIMARY KEY AUTOINCREMENT, " +
+    private static final String CREATE_TABLE_RIWAYAT_KESEHATAN_BAYI = "CREATE TABLE `" + TABLE_RIWAYAT_KESEHATAN_BAYI + "`(" +
+            "`" + COLUMN_INDEX + "` INTEGER PRIMARY KEY AUTOINCREMENT, " +
             "`" +COLUMN_RIWAYAT_KESEHATAN_BAYI_KESEHATAN_BAYI_SAAT_LAHIR+ "` TEXT, " +
             "`" +COLUMN_RIWAYAT_KESEHATAN_BAYI_KESEHATAN_BAYI_SELAMA_DI_RUANG_BAYI+ "` TEXT, " +
             "`" +COLUMN_RIWAYAT_KESEHATAN_BAYI_IMUNISASI_YANG_TELAH_DIBERIKAN+ "` TEXT, " +
