@@ -109,7 +109,7 @@ public class DaoDataAnak {
         cv.put(DBHelper.COLUMN_DATA_ANAK_KONDISI_ATAU_SARAN, model.getKondisiAtauSaranKhusus());
         cv.put(DBHelper.COLUMN_DATA_ANAK_JENIS_KELAMIN_ANAK, model.getJenisKelaminAnak());
 
-        db.update(tableName, cv, DBHelper.COLUMN_INDEX+"=?", new String[]{""+model.getIndex()});
+        db.update(tableName, cv, DBHelper.COLUMN_ID +"=?", new String[]{""+model.getIndex()});
     }
 
     public void remove(){

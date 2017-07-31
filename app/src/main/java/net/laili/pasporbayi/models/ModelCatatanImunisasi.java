@@ -4,6 +4,7 @@ package net.laili.pasporbayi.models;
 import android.database.Cursor;
 
 import net.laili.pasporbayi.database.DBHelper;
+import net.laili.pasporbayi.utils.Constants;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -24,14 +25,14 @@ public class ModelCatatanImunisasi {
     }
 
     public ModelCatatanImunisasi(Cursor cursor){
-        this.index = cursor.getInt(cursor.getColumnIndex(DBHelper.COLUMN_INDEX));
+        this.index = cursor.getInt(cursor.getColumnIndex(DBHelper.COLUMN_ID));
         this.imunisasi = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_CATATAN_IMUNISASI_IMUNISASI));
         this.umur = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_CATATAN_IMUNISASI_UMUR));
         this.tanggal = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_CATATAN_IMUNISASI_TANGGAL));
     }
 
     public ModelCatatanImunisasi(JSONObject object) throws JSONException {
-        this.index = Integer.valueOf(object.getString(DBHelper.COLUMN_INDEX));
+        this.index = Integer.valueOf(object.getString(Constants.RESPONSE_KEY_INDEX));
 
         if(object.has(DBHelper.COLUMN_CATATAN_IMUNISASI_TANGGAL)){
             this.tanggal = object.getString(DBHelper.COLUMN_CATATAN_IMUNISASI_TANGGAL);

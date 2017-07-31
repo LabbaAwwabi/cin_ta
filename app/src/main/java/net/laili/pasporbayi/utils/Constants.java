@@ -18,5 +18,6 @@ public final class Constants {
     public static final int SUCCESS_RESPONSE = 1;
     public static final int FAILED_RESPONSE = 0;
 
+    public static final String RESPONSE_KEY_INDEX = "index";
 
 }
