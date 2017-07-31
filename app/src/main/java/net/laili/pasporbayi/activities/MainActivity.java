@@ -76,6 +76,7 @@ public class MainActivity extends AppCompatActivity
         TextView emailUser = (TextView) headerLayout.findViewById(R.id.text_email_user);
         emailUser.setText(appSessionManager.getEmailUser());
 
+        getSupportActionBar().setTitle("Beranda");
         curId = R.id.nav_beranda;
         navigationView.setCheckedItem(curId);
         Fragment fragment = new BerandaFragment();
@@ -128,15 +129,19 @@ public class MainActivity extends AppCompatActivity
             switch (id) {
                 case R.id.nav_beranda:
                     fragment = new BerandaFragment();
+                    getSupportActionBar().setTitle("Beranda");
                     break;
                 case R.id.nav_data_balita:
                     fragment = new DataBalitaFragment();
+                    getSupportActionBar().setTitle("Data Balita");
                     break;
                 case R.id.nav_tumbuh_kembang:
                     fragment = new TumbuhKembangFragment();
+                    getSupportActionBar().setTitle("Tumbuh Kembang");
                     break;
                 case R.id.nav_imunisasi:
                     fragment = new ImunisasiFragment();
+                    getSupportActionBar().setTitle("Imunisasi");
                     break;
             }
             transaction.replace(R.id.fragment_main, fragment);

@@ -10,15 +10,15 @@
             android:title="Beranda" />
         <item
             android:id="@+id/nav_data_balita"
-            android:icon="@mipmap/ic_launcher"
+            android:icon="@mipmap/ic_recent_actors_black_24dp"
             android:title="Data Balita" />
         <item
             android:id="@+id/nav_tumbuh_kembang"
-            android:icon="@mipmap/ic_launcher"
+            android:icon="@mipmap/ic_timeline_black_24dp"
             android:title="Tumbuh Kembang Balita" />
         <item
             android:id="@+id/nav_imunisasi"
-            android:icon="@mipmap/ic_launcher"
+            android:icon="@mipmap/ic_accessibility_black_24dp"
             android:title="Imunisasi" />
     </group>
 

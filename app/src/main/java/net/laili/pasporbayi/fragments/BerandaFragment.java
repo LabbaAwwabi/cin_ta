@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 
 import net.laili.pasporbayi.R;
 
+import butterknife.ButterKnife;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -24,7 +26,10 @@ public class BerandaFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_beranda, container, false);
+        View view = inflater.inflate(R.layout.fragment_beranda, container, false);
+        ButterKnife.bind(this, view);
+
+        return view;
     }
 
 }
