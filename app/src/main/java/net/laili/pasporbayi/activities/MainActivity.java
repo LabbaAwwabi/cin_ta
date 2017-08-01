@@ -75,8 +75,8 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         View headerLayout = navigationView.getHeaderView(0);
-        TextView emailUser = (TextView) headerLayout.findViewById(R.id.text_email_user);
-        emailUser.setText(appSessionManager.getEmailUser());
+        TextView namaUser = (TextView) headerLayout.findViewById(R.id.text_nama_user);
+        namaUser.setText(appSessionManager.getNamaUser());
 
         getSupportActionBar().setTitle("Beranda");
         curId = R.id.nav_beranda;

@@ -6,15 +6,18 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import net.laili.pasporbayi.R;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class ImunisasiFragment extends Fragment {
+
 
 
     public ImunisasiFragment() {
@@ -31,5 +34,6 @@ public class ImunisasiFragment extends Fragment {
 
         return view;
     }
+
 
 }

@@ -43,6 +43,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="net.laili.pasporbayi.activities.MainActivity" />
         </activity>
+        <activity
+            android:name=".activities.DataAnakActivity"
+            android:label="@string/title_activity_data_anak"
+            android:parentActivityName=".activities.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="net.laili.pasporbayi.activities.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

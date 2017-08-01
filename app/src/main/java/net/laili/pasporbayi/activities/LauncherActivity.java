@@ -46,13 +46,9 @@ public class LauncherActivity extends AppCompatActivity {
         daoPerkembanganBayi = DaoPerkembanganBayi.getInstance(getApplicationContext());
         daoCatatanImunisasi = DaoCatatanImunisasi.getInstance(getApplicationContext());
 
-        Toast.makeText(this, "PB : " +daoPerkembanganBayi.find().size(), Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, "CI : " +daoCatatanImunisasi.find().size(), Toast.LENGTH_SHORT).show();
-
         if (daoPerkembanganBayi.find().size() <= 0 && daoCatatanImunisasi.find().size() <= 0) {
             inisialisasi();
         } else {
-            //inisialisasi();
             delay(2000);
         }
     }
@@ -75,18 +71,14 @@ public class LauncherActivity extends AppCompatActivity {
 
                         for (int i = 0; i < dataCatatanImunisasi.length(); i++) {
                             JSONObject catatanImunisasi = dataCatatanImunisasi.getJSONObject(i);
-                            boolean sql = daoCatatanImunisasi.insert(new ModelCatatanImunisasi(catatanImunisasi));
-                            //Log.i("trace", catatanImunisasi.toString());
-                            Log.i("trace", "imun " + i + (sql?"sukses":"gagal"));
+                            daoCatatanImunisasi.insert(new ModelCatatanImunisasi(catatanImunisasi));
                         }
                         Log.i("trace", "imunisasi : " + daoCatatanImunisasi.find().size());
 
                         for (int i = 0; i < dataPerkembanganBayi.length(); i++) {
                             JSONObject perkembanganBayi = dataPerkembanganBayi.getJSONObject(i);
                             daoPerkembanganBayi.insert(new ModelPerkembanganBayi(perkembanganBayi));
-                            //Log.i("trace", perkembanganBayi.toString());
                         }
-                        Log.i("trace", "perkembangan : " + daoPerkembanganBayi.find().size());
 
                         delay(1000);
                     } else {
